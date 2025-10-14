@@ -1,94 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 * {
-	font-family: Trebuchet MS, sans-serif;
+	font-family: 'Poppins', sans-serif;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
-p {
-	font-size: 1.5em;
-}
-
-h2 {
-	color: #f0f0f0;
-}
-
-nav > ul {
-	list-style-type: none;
-	overflow: hidden;
-	text-align: right;
-}
-
-nav > ul li {
-	width: 80%;
-	text-align: right;
-	display: inline;
-	padding: 1em;
-	font-size: 1.2em;
-}
-
-#logo {
-	width: 15%;
+html, body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: #f9f9f9;
+	line-height: 1.6;
 }
 
 main {
-	background-color: #f0f0f0;
+	flex: 1;
+	background-color: #ffffff;
 	text-align: center;
-	border-radius: 10px 10px 0px 0px
+	border-radius: 10px 10px 0 0;
+	padding: 20px;
+	margin: 20px auto;
+	max-width: 1200px;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-footer, header {
+p {
+	font-size: 1.2em;
+	margin: 1em 0;
+}
+
+h1, h3 {
+	color: #2e8b57;
+	margin-bottom: 0.5em;
+}
+
+header, footer {
 	background-color: #3CB371;
 	color: white;
-	padding: 10px;
-	font-size: 1.5em;
+	padding: 20px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+nav > ul {
+	list-style: none;
+	text-align: center;
+	background-color: #2e8b57;
+	padding: 10px 0;
 	border-radius: 10px;
 }
 
-footer {
-	text-align: center;
-	font-size: 1em;
+nav > ul li {
+	display: inline-block;
+	margin: 0 15px;
 }
 
-nav > ul > li > a:hover {
-	background-color: black;
-	padding: 6px;
-	border-radius: 15px;
-}
-
-nav > ul > li > a {
-	text-decoration: none;
+nav > ul li a {
 	color: white;
+	text-decoration: none;
+	font-size: 1.2em;
+	padding: 10px 15px;
+	border-radius: 8px;
+	transition: background-color 0.3s ease;
 }
 
-figure > img {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
+nav > ul li a:hover,
+nav > ul li a.active {
+	background-color: black;
+}
+
+#logo {
+	width: 100px;
+	display: block;
+	margin: 0 auto;
 }
 
 figure {
-	width: 30%;
-	display: flex;
+	width: 45%;
+	margin: 20px;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #e0f7e9;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+figure img {
+	width: 100%;
+	height: auto;
+	display: block;
 }
 
 figcaption {
-	padding: 6px;
-	font-size: 1.5em;
+	padding: 10px;
+	font-size: 1.1em;
+	background-color: #f0f0f0;
 }
 
-figcaption > a {
-	color: black;
-}
-
-h1 > a {
+figcaption a {
+	color: #333;
 	text-decoration: none;
-	color: black;
+}
+
+h1 a {
+	color: white;
+	text-decoration: none;
+}
+
+dl {
+	margin: 30px auto;
+	max-width: 800px;
+	text-align: left;
 }
 
 dl > dt {
-	font-size: 1.5em;
+	font-size: 1.3em;
 	padding: 12px;
+	margin-bottom: 4px;
 }
 
-dl > dt:nth-of-type(even){
+dl > dt:nth-of-type(even) {
 	background-color: #e6ffe6;
 }
 
@@ -96,6 +130,25 @@ dl > dt:nth-of-type(odd) {
 	background-color: #b3ffb3;
 }
 
-dl > dt a {	
-	color: black;
+dl > dt a {
+	color: #333;
+	text-decoration: none;
+}
+
+h2 {
+	display: none;
+}
+
+h2:empty,
+br {
+	display: none;
+}
+
+.highlightColor {
+    background-color: transparent;
+}
+
+.highlightColor.active {
+    background-color: black; 
+    color: white; 
 }

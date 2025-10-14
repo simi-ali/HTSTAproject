@@ -1,16 +1,24 @@
 <?php
-    function navBar(){
-        ?>
-      <header>
-				<img id="logo" src="../images/lpem.png" alt="banner">
-			<nav> 
-				<ul>
-					<li><a href="index.php">Home</a></li>
-					<li><a href="country1.php">Country #1</a></li>
-					<li><a href="country2.php">Country #2</a></li>
-				</ul>
-				
-			</nav>
-		</header>  <?php
-    }
+function navBar($currentPage)
+{
+	$pages = [
+		"Home" => "index.php",
+		"Country1" => "country1.php",
+		"Country2" => "country2.php",
+	];
+?>
+	<header>
+		<img id="logo" src="../images/lpem.png" alt="banner">
+		<nav>
+			<ul>
+				<?php foreach ($pages as $name => $url): ?>
+					<li class="highlightColor <?= ($currentPage === $name) ? 'active' : '' ?>">
+						<a href="<?= $url ?>"><?= $name === "Country1" ? "Country #1" : ($name === "Country2" ? "Country #2" : $name) ?></a>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</nav>
+	</header>
+<?php
+}
 ?>

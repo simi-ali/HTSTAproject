@@ -8,7 +8,7 @@
 	<body>
 			<?php
 			include("commonCode.php");
-			navBar();
+			navBar("Country2");
 		?>
 		<main>
 			<h2>space</h2>

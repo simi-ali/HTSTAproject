@@ -4,11 +4,12 @@
 		<title>HTSTA Final Project</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="../style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<?php
 			include("commonCode.php");
-			navBar();
+			navBar("Home");
 		?>
 		<main>
 			<h2>space</h2>
@@ -22,6 +23,7 @@
 				Refer to the navigation bar to learn more.
 			</p>
 			<h2>space</h2>
+			<img src="../images/smiley.jpg" alt="Smiley face" width="40%">
 		</main>
 		<footer>
 			<p> LPEM - HTSTA Final Project 2024 </p>

@@ -6,9 +6,9 @@
 		<link rel="stylesheet" href="../style.css">
 	</head>
 	<body>
-			<?php
+		<?php
 			include("commonCode.php");
-			navBar();
+			navBar("Country1");
 		?>
 		<main>
 			<h2>space</h2>
