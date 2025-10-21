@@ -11,7 +11,6 @@
 			navBar("Country1");
 		?>
 		<main>
-			<h2>space</h2>
 			<h1><a href="https://en.wikipedia.org/wiki/Italy" target="blank_">Italy</a></h1>
 			<h2>space</h2>
 			<figure>

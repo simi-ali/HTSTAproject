@@ -6,31 +6,30 @@
 		<link rel="stylesheet" href="../style.css">
 	</head>
 	<body>
-			<?php
+		<?php
 			include("commonCode.php");
 			navBar("Country2");
 		?>
 		<main>
-			<h2>space</h2>
-			<h1><a href="https://en.wikipedia.org/wiki/Romania" target="blank_">Romania</a></h1>
+			<h1><a href="https://en.wikipedia.org/wiki/Thailand" target="blank_">Thailand</a></h1>
 			<h2>space</h2>
 			<figure>
-				<a href="bucharest.php"> <img src="../images/bucharest_tn.jpg" alt="Bucharest"> </a>
+				<a href="bangkok.php"> <img src="../images/bangkok.jpg" alt="Bangkok" width="50%"> </a>
 				
 					<figcaption>
-						<a href="bucharest.php">Bucharest</a>
+						<a href="bangkok.php">Bangkok</a>
 					</figcaption>
 					
-				 <a href="satu.php"> <img src="../images/satu_tn.jpg" href="satu.php" alt="Satu Mare"> </a>
+				 <a href="khon.php"> <img src="../images/khon.jpg" href="khon.php" alt="Khon Kaen" width="50%"> </a>
 				
 					<figcaption>
-						<a href="satu.php">Satu Mare</a>
+						<a href="khon.php">Khon Kaen</a>
 					</figcaption>
 					
-				<a href="cluj.php"> <img src="../images/cluj_tn.jpg" alt="Cluj-Napoca"> </a>
+				<a href="phiphi.php"> <img src="../images/phiphi.jpg" alt="Ko Phi Phi" width="50%"> </a>
 				
 					<figcaption>
-						<a href="cluj.php">Cluj-Napoca</a>
+						<a href="phiphi.php">Ko Phi Phi</a>
 					</figcaption>
 			</figure>
 			<h2>space</h2>

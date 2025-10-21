@@ -34,6 +34,7 @@ p {
 h1, h3 {
 	color: #2e8b57;
 	margin-bottom: 0.5em;
+	visibility: visible;
 }
 
 header, footer {
@@ -106,7 +107,7 @@ figcaption a {
 }
 
 h1 a {
-	color: white;
+	color: green;
 	text-decoration: none;
 }
 
