@@ -13,12 +13,13 @@
 					<li><a href="../index.php">Home</a></li>
 					<li><a href="country1.php">Country #1</a></li>
 					<li><a href="country2.php">Thailand</a></li>
+					<li><a href="register.php">Register</a></li>
 				</ul>
 			</nav>
 		</header>
 		<main>
 			<h2>space</h2>
-			<h1><a href="https://en.wikipedia.org/wiki/Bangkok" target="blank_">Bucharest</a></h1>
+			<h1><a href="https://en.wikipedia.org/wiki/Bangkok" target="blank_">Bangkok</a></h1>
 			<h2>space</h2>
 			
 				<a href="../images/bangkok.jpg"><img src="../images/bangkok.jpg" alt="Bangkok" style="width: 70%"></a>

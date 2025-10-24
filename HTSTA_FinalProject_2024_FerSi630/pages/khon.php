@@ -13,12 +13,13 @@
 					<li><a href="../index.php">Home</a></li>
 					<li><a href="country1.php">Country #1</a></li>
 					<li><a href="country2.php">Thailand</a></li>
+					<li><a href="register.php">Register</a></li>
 				</ul>
 			</nav>
 		</header>
 		<main>
 			<h2>space</h2>
-			<h1><a href="https://en.wikipedia.org/wiki/Khon_Kaen" target="blank_">Satu Mare</a></h1>
+			<h1><a href="https://en.wikipedia.org/wiki/Khon_Kaen" target="blank_">Khon Kaen</a></h1>
 			<h2>space</h2>
 			
 				<a href="../images/khon.jpg"><img src="../images/khon.jpg" alt="Khon Kaen" style="width: 70%"></a>

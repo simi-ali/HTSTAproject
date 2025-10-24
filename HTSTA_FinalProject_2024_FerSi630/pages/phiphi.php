@@ -13,12 +13,13 @@
 					<li><a href="../index.php">Home</a></li>
 					<li><a href="country1.php">Country #1</a></li>
 					<li><a href="country2.php">Thailand</a></li>
+					<li><a href="register.php">Register</a></li>
 				</ul>
 			</nav>
 		</header>
 		<main>
 			<h2>space</h2>
-			<h1><a href="https://en.wikipedia.org/wiki/Ko_Phi_Phi" target="blank_">Cluj-Napoca</a></h1>
+			<h1><a href="https://en.wikipedia.org/wiki/Ko_Phi_Phi" target="blank_">Ko Phi Phi</a></h1>
 			<h2>space</h2>
 			
 				<a href="../images/phiphi.jpg"><img src="../images/phiphi.jpg" alt="Ko Phi Phi" style="width: 70%"></a>

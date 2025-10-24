@@ -5,6 +5,7 @@ function navBar($currentPage)
 		"Home" => "index.php",
 		"Country1" => "country1.php",
 		"Country2" => "country2.php",
+		"Register" => "register.php",
 	];
 ?>
 	<header>
@@ -21,4 +22,25 @@ function navBar($currentPage)
 	</header>
 <?php
 }
+?>
+
+<?php
+	function userAlreadyRegistered($checkedUser){
+		//this function checks if $checkUser string is an existing user in the Clients.csv
+		//IF the given user IS already in the file we will return TRUE -> user already registered
+		//IF NOT (the user did not register) we will return from this function FALSE 
+
+		$bReturnValue = false; //the user is NOT in our database
+
+		$fHandler = fopen("Clients.csv", "r");
+		while(!feof($fHandler)){
+			$newLine = fgets($fHandler);
+			$items = explode(";",$newLine);
+			if ($items[0] == $checkedUser){
+				$bReturnValue = true;
+			}
+		}
+
+		return $bReturnValue;
+	}
 ?>
