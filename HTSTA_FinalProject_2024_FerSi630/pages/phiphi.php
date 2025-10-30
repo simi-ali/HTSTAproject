@@ -8,14 +8,10 @@
 	<body>
 		<header>
 				<img id="logo" src="../images/lpem.png" alt="banner">
-			<nav>
-				<ul>
-					<li><a href="../index.php">Home</a></li>
-					<li><a href="country1.php">Country #1</a></li>
-					<li><a href="country2.php">Thailand</a></li>
-					<li><a href="register.php">Register</a></li>
-				</ul>
-			</nav>
+		<?php
+			include_once("commonCode.php");
+			navBar("Country1");
+		?>
 		</header>
 		<main>
 			<h2>space</h2>

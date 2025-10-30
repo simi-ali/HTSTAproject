@@ -1,23 +1,14 @@
 Key;EnglishText;PortugueseText
-HomeBtn;Home;Casa;
+HomeBtn;Home;Casa
 Country1Btn;Country #1;País #1
 Country2Btn;Country #2;País #2
 RegisterBtn;Register;Registro
-HomeText; Welcome! In this website
-you can find information about two countries 
-and some of their highly visited places. 
-Indulge yourself in the wonders of these countries. 
-Refer to the navigation bar to learn more.;
-Bem-vindo! Neste site você encontra informações 
-sobre dois países e alguns de seus lugares mais visitados. 
-Delicie-se com as maravilhas desses países.
-Consulte a barra de navegação para saber mais.
-
-Italy;Italy;Itália
-Sicily;Sicily;Sicília
-Rome;Rome;Roma
-Milan;Milan;Milão
-Thailand;Thailand;Thailândia
-Bangkok;Bangkok;Bangkok
-KhonKaen;Khon Kaen; Khon Kaen
-KoPhiPhi;Ko Phi Phi; Ko Phi Phi;
+HomeText; Welcome! In this website, you can find information about two countries and some of their highly visited places. Indulge yourself in the wonders of these countries. Refer to the navigation bar to learn more.; Bem-vindo! Neste site você encontrará informações sobre dois países e alguns de seus lugares mais visitados. Delicie-se com as maravilhas desses países.Consulte a barra de navegação para saber mais.
+ItalyCountry;Italy;Itália
+SicilyBtn;Sicily;Sicília
+SicilyText;This is Italy's biggest peninsula, notorious for its sandy beaches, delicious wine, and mafia origins. Some recommended places to visit include: Cathedral of Palermo, Ancient Theatre of Taormina, and the Royal Palace.;Esta é a maior península da Itália, famosa por suas praias de areia branca, vinhos deliciosos e origens ligadas à máfia. Alguns lugares recomendados para visitar incluem: Catedral de Palermo, Teatro Antigo de Taormina e Palácio Real.
+MilanPage;Milan;Milão
+ThailandPage;Thailand;Thailândia
+BangkokPage;Bangkok;Bangkok
+KhonKaenPage;Khon Kaen;Khon Kaen
+KoPhiPhiPage;Ko Phi Phi;Ko Phi Phi

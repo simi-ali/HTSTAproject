@@ -10,7 +10,7 @@
 <body>
 
     <?php
-        include("commonCode.php");
+        include_once("commonCode.php");
         navBar("Register");
     ?>
 
