@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+$_SESSION["MyData"] = [];
+if (!isset($_SESSION["UserLogged"])) {
+    $_SESSION["UserLogged"] = false;
+}
+
 $language = "EN";
 
 if (isset($_GET["lang"])) {
