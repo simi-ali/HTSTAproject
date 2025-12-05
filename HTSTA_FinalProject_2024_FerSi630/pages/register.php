@@ -1,57 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
 
-    <?php
-        include_once("commonCode.php");
-        navBar("Register");
-    ?>
+<?php
+include_once("commonCode.php");
+navBar("Register");
+?>
 
-    <h1>Registration form:</h1>
-    <?php
-    $showForm = true;
-    if (isset($_POST["Username"], $_POST["psw"], $_POST["pswAgain"])) {
-        $showForm = false;
-        if ($_POST["psw"] == "") {
-            print("Please type a password");
-            $showForm = true;
-        } else {
+<h1><?= $arrayOfTranslations["RegisterH1"] ?></h1>
 
-            if ($_POST["psw"] == $_POST["pswAgain"] && !userAlreadyRegistered($_POST["Username"])) {
-                print("Passwords match. You will be registered ...");
-                $fHandler = fopen("Clients.csv", "a");
-                fwrite($fHandler, "\n" . $_POST["Username"] . ";" . $_POST["psw"]);
-                fclose($fHandler);
-            } else {
-                $showForm = true;
-                print("Passwords do not match or the user already exists. Please try again");
-            }
+<?php
+$showForm = true;
+
+if (isset($_POST["Username"], $_POST["psw"], $_POST["pswAgain"])) {
+    $showForm = false;
+
+    $user = trim($_POST["Username"]); // Trim username
+    $psw = $_POST["psw"];            // Do NOT trim password
+    $again = $_POST["pswAgain"];
+
+    if ($user === "" || $psw === "" || $again === "") {
+        echo "<p>{$arrayOfTranslations["RegisterFailEmpty"]}</p>";
+        $showForm = true;
+    } elseif ($psw !== $again) {
+        echo "<p>{$arrayOfTranslations["RegisterFailMatch"]}</p>";
+        $showForm = true;
+    } elseif (userAlreadyRegistered($user)) {
+        echo "<p>{$arrayOfTranslations["RegisterFailExists"]}</p>";
+        $showForm = true;
+    } else {
+        $hash = password_hash($psw, PASSWORD_DEFAULT);
+
+        // Append user to CSV without adding extra newlines
+        $file = fopen("Clients.csv", "a");
+        if (filesize("Clients.csv") > 0) {
+            fwrite($file, "\n");
         }
+        fwrite($file, "$user;$hash");
+        fclose($file);
+
+        echo "<p>{$arrayOfTranslations["RegisterSuccess"]}</p>";
     }
-    if ($showForm) {
-    ?>
-        <form method="POST">
-            <label>Username:</label>
-            <br>
-            <input type="test" name="Username">
-            <br>
-            <label>Password:</label>
-            <br>
-            <input type="password" name="psw">
-            <input type="password" name="pswAgain">
-            <input type="submit" value="Register">
-        </form>
-    <?php
-    }
-    ?>
+}
+
+if ($showForm):
+?>
+
+<form method="POST">
+    <label><?= $arrayOfTranslations["RegisterUsername"] ?></label><br>
+    <input type="text" name="Username" required><br><br>
+
+    <label><?= $arrayOfTranslations["RegisterPassword"] ?></label><br>
+    <input type="password" name="psw" required><br><br>
+
+    <label><?= $arrayOfTranslations["RegisterPasswordAgain"] ?></label><br>
+    <input type="password" name="pswAgain" required><br><br>
+
+    <input type="submit" value="<?= $arrayOfTranslations["RegisterSubmit"] ?>">
+</form>
+
+<?php endif; ?>
 
 </body>
-
 </html>

@@ -1,75 +1,78 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
-    <title>Best Holiday Destinations</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../style.css">
 </head>
- 
+
 <body>
-    <?php
 
-    session_start();
+<?php
+include_once("commonCode.php");
+navBar("Login");
+?>
 
-    if(isset($_POST["Logout"])) {
-        session_unset();
-        session_destroy();
-        session_start();
-    }
+<h1><?= $arrayOfTranslations["LoginH1"] ?></h1>
 
-    include_once("common.php");
-    head("Login", "Login");
-    ?>
-    <main class="register">
-        <h1><?= $arrayOfTranslations["LoginH1"] ?></h1>
-        <br>
-        <?php
+<?php
+$showForm = true;
+
+if (isset($_POST["Username"], $_POST["psw"])) {
+    $showForm = false;
+
+    $username = trim($_POST["Username"]); // Trim username
+    $password = $_POST["psw"];           // Do NOT trim password
+
+    if ($username === "" || $password === "") {
+        echo "<p>{$arrayOfTranslations["LoginOut1"]}</p>";
         $showForm = true;
-        if (isset($_POST["Username"], $_POST["psw"])) {
-            $showForm = false;
-            $success = false;
-            if ($_POST["psw"] == null || $_POST["Username"] == null) {
-                $showForm = true;
-                print($arrayOfTranslations["LoginOut1"]);
-            } else {
-                $fHandler = fopen("Clients.csv", "r");
-                fgets($fHandler);
-                fgets($fHandler);
-                while (!feof($fHandler)) {
-                    $oneUser = fgets($fHandler);
-                    $individualUserComponents = explode(";", $oneUser);
-                    ($individualUserComponents[0] == $_POST["Username"] && password_verify($_POST["psw"], $individualUserComponents[1])) ? $success = true : "";
-                    // $individualUserComponents[0] == $_POST["Username"] && $individualUserComponents[1] == $_POST["psw"]
-                }
-                if ($success) {
-                    // print($arrayOfTranslations["LoginOut2"]);
-                    $_SESSION["UserLogged"]=true;
-                } else {
-                    print($arrayOfTranslations["LoginOut3"]);
-                    $showForm = true;
+    } else {
+        $success = false;
+
+        if (($file = fopen("Clients.csv", "r")) !== false) {
+            while (($line = fgetcsv($file, 0, ";")) !== false) {
+                if (count($line) < 2) continue;
+
+                $csvUser = trim($line[0]);
+                $csvHash = rtrim($line[1], "\r\n"); // remove extra newline/CR
+
+                if ($csvUser === $username && password_verify($password, $csvHash)) {
+                    $success = true;
+                    break;
                 }
             }
+            fclose($file);
         }
-        if ($showForm) {
-        ?>
-            <form method="POST">
-                <label><?= $arrayOfTranslations["LoginLabel1"] ?></label>
-                <input type="test" name="Username">
-                <br>
-                <br>
-                <label><?= $arrayOfTranslations["LoginLabel2"] ?></label>
-                <input type="password" name="psw">
-                <br>
-                <br>
-                <input type="submit" value="<?= $arrayOfTranslations["LoginLabel3"] ?>">
-            </form>
-        <?php
+
+        if ($success) {
+            $_SESSION["UserLogged"] = true;
+            $_SESSION["Username"] = $username;
+            $_SESSION["IsAdmin"] = ($username === "admin"); // Case-sensitive admin
+
+            echo "<p>{$arrayOfTranslations["LoginOut2"]}</p>";
+            echo "<meta http-equiv='refresh' content='1; url=index.php?lang=$language'>";
+        } else {
+            echo "<p>{$arrayOfTranslations["LoginOut3"]}</p>";
+            $showForm = true;
         }
-        ?>
-    </main>
-    <?php
-    foot();
-    ?>
+    }
+}
+
+if ($showForm):
+?>
+
+<form method="POST">
+    <label><?= $arrayOfTranslations["LoginLabel1"] ?></label><br>
+    <input type="text" name="Username" required><br><br>
+
+    <label><?= $arrayOfTranslations["LoginLabel2"] ?></label><br>
+    <input type="password" name="psw" required><br><br>
+
+    <input type="submit" value="<?= $arrayOfTranslations["LoginLabel3"] ?>">
+</form>
+
+<?php endif; ?>
+
 </body>
- 
 </html>

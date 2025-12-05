@@ -1,79 +1,95 @@
 <?php
-
 session_start();
-$_SESSION["MyData"] = [];
+
 if (!isset($_SESSION["UserLogged"])) {
     $_SESSION["UserLogged"] = false;
 }
-
-$language = "EN";
-
-if (isset($_GET["lang"])) {
-    $language = $_GET["lang"];
+if (!isset($_SESSION["IsAdmin"])) {
+    $_SESSION["IsAdmin"] = false;
 }
+
+$language = isset($_GET["lang"]) ? $_GET["lang"] : "EN";
 
 $arrayOfTranslations = [];
 if (($fileTranslations = fopen("Translation.csv", "r")) !== false) {
-    $header = fgetcsv($fileTranslations, 0, ";");
+    fgetcsv($fileTranslations, 0, ";");
     while (($pieces = fgetcsv($fileTranslations, 0, ";")) !== false) {
         if (count($pieces) >= 3) {
             $key = trim($pieces[0]);
-            $english = trim($pieces[1]);
-            $portuguese = trim($pieces[2]);
-            $arrayOfTranslations[$key] = ($language == "EN") ? $english : $portuguese;
+            $arrayOfTranslations[$key] =
+                ($language == "EN") ? trim($pieces[1]) : trim($pieces[2]);
         }
     }
     fclose($fileTranslations);
-} else {
-    die("Translation file not found.");
 }
 
 $pages = [
-    "Home" => ["label" => $arrayOfTranslations["HomeBtn"], "url" => "index.php"],
-    "Country1" => ["label" => $arrayOfTranslations["Country1Btn"], "url" => "country1.php"],
-    "Country2" => ["label" => $arrayOfTranslations["Country2Btn"], "url" => "country2.php"],
-    "Register" => ["label" => $arrayOfTranslations["RegisterBtn"], "url" => "register.php"]
+    "Home"      => ["label" => $arrayOfTranslations["HomeBtn"], "url" => "index.php"],
+    "Country1"  => ["label" => $arrayOfTranslations["Country1Btn"], "url" => "country1.php"],
+    "Country2"  => ["label" => $arrayOfTranslations["Country2Btn"], "url" => "country2.php"],
+    "Register"  => ["label" => $arrayOfTranslations["RegisterBtn"], "url" => "register.php"],
+    "Login"     => ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"]
 ];
+
+// Add Admin page only if user is admin
+if (!empty($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"] === true) {
+    $pages["Admin"] = ["label" => $arrayOfTranslations["AdminBtn"], "url" => "admin.php"];
+}
 
 function navBar($currentPage)
 {
-    global $language, $pages;
-    ?>
+    global $language, $pages, $arrayOfTranslations;
+
+    $isLogged = $_SESSION["UserLogged"] ?? false;
+    $username = $_SESSION["Username"] ?? "";
+?>
     <header>
-        <img id="logo" src="../images/lpem.png" alt="banner">
+        <img id="logo" src="/images/lpem.png" alt="banner">
         <nav>
             <ul>
-                <?php foreach ($pages as $pageKey => $pageData): ?>
-                    <li class="<?= ($currentPage === $pageKey) ? 'active highlightColor' : '' ?>">
-                        <a href="<?= htmlspecialchars($pageData['url']) ?>">
-                            <?= htmlspecialchars($pageData['label']) ?>
+                <?php foreach ($pages as $key => $pg): ?>
+                    <li class="<?= ($currentPage === $key) ? 'active highlightColor' : '' ?>">
+                        <a href="<?= $pg['url'] ?>?lang=<?= $language ?>">
+                            <?= htmlspecialchars($pg['label']) ?>
                         </a>
                     </li>
                 <?php endforeach; ?>
+
+                <?php if ($isLogged): ?>
+                    <li class="loggedUserText">
+                        <?= $arrayOfTranslations["LoggedInAs"] . " " . htmlspecialchars($username) ?>
+                    </li>
+                    <li>
+                        <form method="POST" action="logout.php" style="display:inline;">
+                            <input type="hidden" name="lang" value="<?= $language ?>">
+                            <button type="submit"><?= $arrayOfTranslations["LogoutBtn"] ?></button>
+                        </form>
+                    </li>
+                <?php endif; ?>
             </ul>
-            <form>
+
+            <form method="GET">
                 <select name="lang" onchange="this.form.submit()">
-                    <option value="EN" <?= ($language == "EN") ? "selected" : "" ?>>English</option>
-                    <option value="PT" <?= ($language == "PT") ? "selected" : "" ?>>Portuguese</option>
+                    <option value="EN" <?= ($language == "EN" ? "selected" : "") ?>>English</option>
+                    <option value="PT" <?= ($language == "PT" ? "selected" : "") ?>>Portuguese</option>
                 </select>
             </form>
         </nav>
     </header>
-    <?php
+<?php
 }
 
 function userAlreadyRegistered($checkedUser)
 {
-    $bReturnValue = false;
     if (($fHandler = fopen("Clients.csv", "r")) !== false) {
         while (($items = fgetcsv($fHandler, 0, ";")) !== false) {
-            if (isset($items[0]) && trim($items[0]) === trim($checkedUser)) {
-                $bReturnValue = true;
-                break;
+            if (trim($items[0]) === trim($checkedUser)) {
+                fclose($fHandler);
+                return true;
             }
         }
         fclose($fHandler);
     }
-    return $bReturnValue;
+    return false;
 }
 ?>
