@@ -15,24 +15,23 @@
 		</header>
 		<main>
 			<h2>space</h2>
-			<h1><a href="https://en.wikipedia.org/wiki/Rome" target="blank_">Rome</a></h1>
+			<h1><a href="https://en.wikipedia.org/wiki/Rome" target="blank_"><?= $arrayOfTranslations["RomeTitle"]  ?></a></h1>
 			<h2>space</h2>
 			
 				<a href="../images/rome.jpg"><img src="../images/rome.jpg" alt="Rome" style="width: 50%"></a>
 				
 			<p>
-				The capital of Italy; infamous for its ancient history and for its
-				remarkable archaeological sites.
+				<?= $arrayOfTranslations["RomeDescription"]  ?>
 			</p>
 			
 			<p>
-				Some recommended places to visit include:
+				<?= $arrayOfTranslations["Recommendations"]  ?>
 			</p>
 			
 			<dl>
-				<dt><a href="https://en.wikipedia.org/wiki/Colosseum" target="blank_">Colosseum</a></dt>
-				<dt><a href="https://en.wikipedia.org/wiki/Pantheon,_Rome" target="blank_">Pantheon</a></dt>
-				<dt><a href="https://en.wikipedia.org/wiki/Vatican_Museums" target="blank_">Vatican musems</a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Colosseum" target="blank_"><?= $arrayOfTranslations["Colosseum"]  ?></a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Pantheon,_Rome" target="blank_"><?= $arrayOfTranslations["Pantheon"]  ?></a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Vatican_Museums" target="blank_"><?= $arrayOfTranslations["Museums"]  ?></a></dt>
 			</dl>
 			<h2>space</h2>
 		</main>

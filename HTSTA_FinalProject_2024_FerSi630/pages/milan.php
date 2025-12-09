@@ -15,23 +15,23 @@
 		</header>
 		<main>
 			<h2>space</h2>
-			<h1><a href="https://en.wikipedia.org/wiki/Milan" target="blank_">Milan</a></h1>
+			<h1><a href="https://en.wikipedia.org/wiki/Milan" target="blank_"><?= $arrayOfTranslations["MilanTitle"]  ?></a></h1>
 			<h2>space</h2>
 			
 				<a href="../images/milan.jpg"><img src="../images/milan.jpg" alt="Milan" style="width: 50%"></a>
 				
 			<p>
-				The most luxurious and expensive place in Italy.
+				<?= $arrayOfTranslations["MilanDescription"]  ?>
 			</p>
 			
 			<p>
-				Some recommended places to visit include:
+				<?= $arrayOfTranslations["Recommendations"]  ?>
 			</p>
 			
 			<dl>
-				<dt><a href="https://en.wikipedia.org/wiki/Milan_Cathedral" target="blank_">Cathedral of Milan</a></dt>
-				<dt><a href="https://en.wikipedia.org/wiki/The_Last_Supper_(Leonardo)" target="blank_">Tour guide of Da Vinci's "The Last Supper"</a></dt>
-				<dt><a href="https://en.wikipedia.org/wiki/Navigli" target="blank_">Navigali boat trip</a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Milan_Cathedral" target="blank_"><?= $arrayOfTranslations["Cathedral"]  ?></a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/The_Last_Supper_(Leonardo)" target="blank_"><?= $arrayOfTranslations["TourGuide"]  ?>"</a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Navigli" target="blank_"><?= $arrayOfTranslations["Navigali"]  ?></a></dt>
 			</dl>
 			<h2>space</h2>
 		</main>

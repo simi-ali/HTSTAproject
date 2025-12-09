@@ -1,38 +1,47 @@
-<?php
-include "commonCode.php";
-function t($text)  {
-	return $text;
-}
-?>
-
 <!DOCTYPE html>
-<html lang="<?php echo $lang; ?>">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title><?php echo t("Sicily"); ?></title>
-    <link rel="stylesheet" href="styles.css">
+    <title><?= $arrayOfTranslations["SicilyTitle"] ?></title>
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-    <?php include "navbar.php"; ?>
 
+<body>
+    <header>
+        <img id="logo" src="../images/lpem.png" alt="banner">
+            <?php
+            include_once("commonCode.php");
+            navBar("Country1");
+            ?>
+    </header>
     <main>
-        <h1><a href="https://en.wikipedia.org/wiki/Sicily" target="_blank"><?php echo t("Sicily"); ?></a></h1>
+        <h2>space</h2>
+			<h1><a href="https://en.wikipedia.org/wiki/Sicily" target="blank_"><?= $arrayOfTranslations["SicilyTitle"]  ?></a></h1>
+		<h2>space</h2>
+
+        <h1><a href="https://en.wikipedia.org/wiki/Sicily" target="_blank"></a></h1>
+
+        <a href="../images/sicily.jpg"><img src="../images/sicily.jpg" alt="Sicily" style="width: 50%"></a>
 
         <p>
-            <?php echo t("Sicily is Italy's largest island, famous for its stunning beaches, rich history, delicious cuisine, and vibrant culture."); ?>
+            <?= $arrayOfTranslations["SicilyDescription"]  ?>
         </p>
 
-        <p><?php echo t("Some recommended places to visit include:"); ?></p>
+        <p>
+            <?= $arrayOfTranslations["Recommendations"]  ?>
+        </p>
 
         <dl>
-            <dt><a href="https://en.wikipedia.org/wiki/Palermo_Cathedral" target="_blank"><?php echo t("Cathedral of Palermo"); ?></a></dt>
-            <dt><a href="https://en.wikipedia.org/wiki/Ancient_theatre_of_Taormina" target="_blank"><?php echo t("Ancient Theatre of Taormina"); ?></a></dt>
-            <dt><a href="https://en.wikipedia.org/wiki/Palazzo_dei_Normanni" target="_blank"><?php echo t("Royal Palace of Palermo"); ?></a></dt>
+            <dt><a href="https://en.wikipedia.org/wiki/Palermo_Cathedral" target="_blank"><?= $arrayOfTranslations["Palermo"]  ?></a></dt>
+            <dt><a href="https://en.wikipedia.org/wiki/Ancient_theatre_of_Taormina" target="_blank"><?= $arrayOfTranslations["Taormina"]  ?></a></dt>
+            <dt><a href="https://en.wikipedia.org/wiki/Palazzo_dei_Normanni" target="_blank"><?= $arrayOfTranslations["RoyalPalace"]  ?></a></dt>
         </dl>
-
-        <p><?php echo t("Enjoy your journey through this beautiful island!"); ?></p>
     </main>
 
-    <?php include "footer.php"; ?>
+    <footer>
+        <p> LPEM - HTSTA Final Project 2024 </p>
+    </footer>
 </body>
+
 </html>

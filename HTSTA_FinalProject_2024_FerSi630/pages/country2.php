@@ -11,7 +11,7 @@
 			navBar("Country2");
 		?>
 		<main>
-			<h1><a href="https://en.wikipedia.org/wiki/Thailand" target="blank_">Thailand</a></h1>
+			<h1><a href="https://en.wikipedia.org/wiki/Thailand" target="blank_"><?= $arrayOfTranslations["Thailand"]  ?></a></h1>
 			<h2>space</h2>
 			<figure>
 				<a href="bangkok.php"> <img src="../images/bangkok.jpg" alt="Bangkok" width="50%"> </a>

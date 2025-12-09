@@ -21,18 +21,17 @@
 				<a href="../images/phiphi.jpg"><img src="../images/phiphi.jpg" alt="Ko Phi Phi" style="width: 70%"></a>
 				
 			<p>
-				These beautiful islands are known for its stunning natural beauty, including dramatic limestones cliffs and
-				crystal-clear turquoise waters.
+				<?= $arrayOfTranslations["KoPhiPhiDescription"]  ?>
 			</p>
 			
 			<p>
-				Some recommended places to visit include:
+				<?= $arrayOfTranslations["Recommendations"]  ?>
 			</p>
 			
 			<dl>
-				<dt><a href="https://en.wikipedia.org/wiki/Ko_Phi_Phi_Le" target="blank_">Maya Bay</a></dt>
-				<dt><a href="https://en.wikipedia.org/wiki/Ko_Phi_Phi_Le" target="blank_">Viking Cave</a></dt>
-				<dt><a href="https://www.tonsaibayresort.com/" target="blank_">Tonsai Bay</a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Ko_Phi_Phi_Le" target="blank_"><?= $arrayOfTranslations["MayaBay"]  ?></a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Ko_Phi_Phi_Le" target="blank_"><?= $arrayOfTranslations["VikingCave"]  ?></a></dt>
+				<dt><a href="https://www.tonsaibayresort.com/" target="blank_"><?= $arrayOfTranslations["TonsaiBay"]  ?></a></dt>
 			</dl>
 				
 			<h2>space</h2>

@@ -21,17 +21,17 @@
 				<a href="../images/bangkok.jpg"><img src="../images/bangkok.jpg" alt="Bangkok" style="width: 70%"></a>
 				
 			<p>
-				The capital of Bangkok, renowned for its vibrant culture, delicious street food, and majestic temples.
+				<?= $arrayOfTranslations["BangkokDescription"]  ?> 
 			</p>
 			
 			<p>
-				Some recommended places to visit include:
+				<?= $arrayOfTranslations["Recommendations"]  ?> 
 			</p>
 			
 			<dl>
-				<dt><a href="https://en.wikipedia.org/wiki/Grand_Palace" target="blank_">Grand Palace</a></dt>
-				<dt><a href="https://en.wikipedia.org/wiki/Giant_Swing" target="blank_">The Giant Swing</a></dt>
-				<dt><a href="https://en.wikipedia.org/wiki/Wat_Arun" target="blank_">Wat Arun</a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Grand_Palace" target="blank_"><?= $arrayOfTranslations["GrandPalace"]  ?> </a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Giant_Swing" target="blank_"><?= $arrayOfTranslations["GiantSwing"]  ?> </a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Wat_Arun" target="blank_"><?= $arrayOfTranslations["WatArun"]  ?> </a></dt>
 			</dl>
 				
 			<h2>space</h2>

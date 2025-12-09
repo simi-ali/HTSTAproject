@@ -21,17 +21,17 @@
 				<a href="../images/khon.jpg"><img src="../images/khon.jpg" alt="Khon Kaen" style="width: 70%"></a>
 				
 			<p>
-				Well known for the high-quality silk that is produced here.
+				<?= $arrayOfTranslations["KhonKaenDescription"]  ?>
 			</p>
 			
 			<p>
-				Some recommended places to visit include:
+				<?= $arrayOfTranslations["Recommendations"]  ?>
 			</p>
 			
 			<dl>
-				<dt><a href="https://www.tourismthailand.org/Attraction/khon-kaen-national-museum" target="blank_">Khon Kaen National Museum</a></dt>
-				<dt><a href="https://en.wikipedia.org/wiki/Phra_Mahathat_Kaen_Nakhon" target="blank_">Phra Mahathat Kaen Nakhon</a></dt>
-				<dt><a href="https://www.tourismthailand.org/Attraction/ton-tan-market" target="blank_">Ton Tann Market</a></dt>
+				<dt><a href="https://www.tourismthailand.org/Attraction/khon-kaen-national-museum" target="blank_"><?= $arrayOfTranslations["NationalMuseum"]  ?></a></dt>
+				<dt><a href="https://en.wikipedia.org/wiki/Phra_Mahathat_Kaen_Nakhon" target="blank_"><?= $arrayOfTranslations["PhraNakhon"]  ?></a></dt>
+				<dt><a href="https://www.tourismthailand.org/Attraction/ton-tan-market" target="blank_"><?= $arrayOfTranslations["TonTann"]  ?></a></dt>
 			</dl>
 				
 			<h2>space</h2>

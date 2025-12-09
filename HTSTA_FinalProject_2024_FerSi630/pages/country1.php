@@ -12,7 +12,7 @@
 		?>
 		<main>
 			
-			<h1><a href="https://en.wikipedia.org/wiki/Italy" target="blank_">Italy</a></h1>
+			<h1><a href="https://en.wikipedia.org/wiki/Italy" target="blank_"><?=$arrayOfTranslations["Italy"]?></a></h1>
 			<h2>space</h2>
 			<figure>
 				<a href="sicily.php"> <img src="../images/sicily_tn.jpg" alt="Sicily"> </a>
