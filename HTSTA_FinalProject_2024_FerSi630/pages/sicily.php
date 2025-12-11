@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title><?= $arrayOfTranslations["SicilyTitle"] ?></title>
+    <title>HTSTA Final Project</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 

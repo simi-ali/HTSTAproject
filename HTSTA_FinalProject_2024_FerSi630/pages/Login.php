@@ -16,18 +16,33 @@
     <h1><?= $arrayOfTranslations["LoginH1"] ?></h1>
 
     <?php
+
+    $adminUser = "simi";
+    $adminPswd = "123";
+
     $showForm = true;
 
     if (isset($_POST["Username"], $_POST["psw"])) {
         $showForm = false;
 
-        $username = trim($_POST["Username"]); // Trim username
-        $password = $_POST["psw"];           // Do NOT trim password
+        $username = trim($_POST["Username"]);
+        $password = $_POST["psw"];
 
         if ($username === "" || $password === "") {
             echo "<p>{$arrayOfTranslations["LoginOut1"]}</p>";
             $showForm = true;
         } else {
+
+            if ($username === $adminUser && $password === $adminPswd) {
+                $_SESSION["UserLogged"] = true;
+                $_SESSION["Username"] = $adminUser;
+                $_SESSION["IsAdmin"] = true;
+
+                echo "<p>{$arrayOfTranslations["LoginOut2"]}</p>";
+                echo "<meta http-equiv='refresh' content='1; url=admin.php?lang=$language'>";
+                exit;
+            }
+
             $success = false;
 
             if (($file = fopen("Clients.csv", "r")) !== false) {
@@ -35,7 +50,7 @@
                     if (count($line) < 2) continue;
 
                     $csvUser = trim($line[0]);
-                    $csvHash = rtrim($line[1], "\r\n"); // remove extra newline/CR
+                    $csvHash = rtrim($line[1], "\r\n");
 
                     if ($csvUser === $username && password_verify($password, $csvHash)) {
                         $success = true;
@@ -48,7 +63,7 @@
             if ($success) {
                 $_SESSION["UserLogged"] = true;
                 $_SESSION["Username"] = $username;
-                $_SESSION["IsAdmin"] = ($username === "admin"); // Case-sensitive admin
+                $_SESSION["IsAdmin"] = false;
 
                 echo "<p>{$arrayOfTranslations["LoginOut2"]}</p>";
                 echo "<meta http-equiv='refresh' content='1; url=index.php?lang=$language'>";
@@ -73,7 +88,7 @@
         </form>
 
     <?php endif; ?>
-    
+
 </body>
 
 </html>

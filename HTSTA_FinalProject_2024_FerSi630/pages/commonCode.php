@@ -31,7 +31,6 @@ $pages = [
     "Login"     => ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"]
 ];
 
-// Add Admin page only if user is admin
 if (!empty($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"] === true) {
     $pages["Admin"] = ["label" => $arrayOfTranslations["AdminBtn"], "url" => "admin.php"];
 }
