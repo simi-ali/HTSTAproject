@@ -9,7 +9,6 @@
 
 <body>
 	<header>
-		<img id="logo" src="../images/lpem.png" alt="banner">
 		<?php
 		include_once("commonCode.php");
 		navBar("Country2");

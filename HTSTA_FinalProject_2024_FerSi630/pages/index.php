@@ -3,7 +3,7 @@
 	<head>
 		<title>HTSTA Final Project</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="../style.css">
+		<link rel="stylesheet" href="\HTSTAProject/HTSTA_FinalProject_2024_FerSi630/style.css">
 		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 	</head>
 	<body>

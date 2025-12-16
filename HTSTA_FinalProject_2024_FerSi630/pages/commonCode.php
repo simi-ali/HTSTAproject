@@ -10,6 +10,12 @@ if (!isset($_SESSION["IsAdmin"])) {
 
 $language = isset($_GET["lang"]) ? $_GET["lang"] : "EN";
 
+define('BASE_DIR', '/HTSTAproject/HTSTA_FinalProject_2024_FerSi630');
+
+function asset($path) {
+    return BASE_DIR . '/' . ltrim($path, '/');
+}
+
 $arrayOfTranslations = [];
 if (($fileTranslations = fopen("Translation.csv", "r")) !== false) {
     fgetcsv($fileTranslations, 0, ";");
@@ -43,7 +49,7 @@ function navBar($currentPage)
     $username = $_SESSION["Username"] ?? "";
 ?>
     <header>
-        <img id="logo" src="/images/lpem.png" alt="banner">
+        <img id="logo" src="<?= asset('images/lpem.png') ?>" alt="banner">
         <nav>
             <ul>
                 <?php foreach ($pages as $key => $pg): ?>
