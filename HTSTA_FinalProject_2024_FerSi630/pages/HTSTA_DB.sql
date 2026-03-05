@@ -1,10 +1,7 @@
 create or replace database HTSTA_DB
 use HTSTA_DB;
 
-create table ItalyPage(
-    pictureId varchar(500),
-    wikiId varchar(100),
-
+create table CountryPage(
     titleEN char(50),
     titlePT char(50),
 
@@ -12,10 +9,7 @@ create table ItalyPage(
     TextPT char(50)
 );
 
-create table italianCities(
-    pictureId varchar(500),
-    wikiId varchar(1000),
-
+create table Cities(
     titleEN varchar(50),
     titlePT varchar(50),
 
@@ -26,43 +20,37 @@ create table italianCities(
     locationsPT varchar(100)
 );
 
-insert into ItalyPage(pictureId, wikiId, titleEN, titlePT, textEN, textPT) values
-(   "",
-    "https://en.wikipedia.org/wiki/Italy",  
+insert into CountryPage(titleEN, titlePT, textEN, textPT) values
+(   
     "Italy", 
     "Itália",
     "",
     ""
 ),
 
-(   "../images/sicily.jpg",
-    "https://en.wikipedia.org/wiki/Sicily",
+(   
     "",
     "",
     "Sicily",
     "Sicília"
 ),
 
-(   "../images/rome.jpg",
-    "https://en.wikipedia.org/wiki/Rome",
+(   
     "",
     "",
     "Rome",
     "Roma"
 ),
 
-(   "../images/milan.jpg",
-    "https://en.wikipedia.org/wiki/Milan",
+(   
     "",
     "",
     "Milan",
     "Milão"
 );
 
-insert into italianCities(pictureId, wikiId, titleEN, titlePT, descriptionEN, descriptionPT, locationsEN, locationsPT) values
+insert into Cities(titleEN, titlePT, descriptionEN, descriptionPT, locationsEN, locationsPT) values
 (   
-    "../images/sicily.jpg",
-    "https://en.wikipedia.org/wiki/Sicily",
     "Sicily",
     "Sicília",
     "Italy's biggest peninsula, famous for its beaches, wine, and mafia history. Some recommended places to visit include:",
@@ -78,8 +66,6 @@ insert into italianCities(pictureId, wikiId, titleEN, titlePT, descriptionEN, de
 ),
 
 (   
-    "../images/rome.jpg",
-    "https://en.wikipedia.org/wiki/Rome",
     "Rome",
     "Roma",
     "The capital of Italy, known for ancient history and remarkable archaeological sites. Some recommended places to visit include:",
@@ -95,8 +81,6 @@ insert into italianCities(pictureId, wikiId, titleEN, titlePT, descriptionEN, de
 ),
 
 (
-    "../images/Milan.jpg",
-    "https://en.wikipedia.org/wiki/Milan",
     "Milan",
     "Milão",
     "The most luxurious and expensive place in Italy. Some recommended places to visit include:",
@@ -109,6 +93,18 @@ insert into italianCities(pictureId, wikiId, titleEN, titlePT, descriptionEN, de
     "- Catedral de Milano
     - Guia turístico da obra 'A Última Ceia' de Da Vinci
     - Passeio de barco Navigali"
+),
+
+(
+
+),
+
+(
+
+),
+
+(
+
 );
 
 
