@@ -31,8 +31,7 @@ if (($fileTranslations = fopen("Translation.csv", "r")) !== false) {
 
 $pages = [
     "Home"      => ["label" => $arrayOfTranslations["HomeBtn"], "url" => "index.php"],
-    "Country1"  => ["label" => $arrayOfTranslations["Country1Btn"], "url" => "country1.php"],
-    "Country2"  => ["label" => $arrayOfTranslations["Country2Btn"], "url" => "country2.php"],
+    "Products"  => ["label" => $arrayOfTranslations["ProductBtn"], "url" => "country1.php"],
     "Register"  => ["label" => $arrayOfTranslations["RegisterBtn"], "url" => "register.php"],
     "Login"     => ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"]
 ];

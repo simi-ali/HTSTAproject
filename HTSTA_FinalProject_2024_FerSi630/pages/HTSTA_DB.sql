@@ -1,111 +1,102 @@
 create or replace database HTSTA_DB
 use HTSTA_DB;
 
-create table CountryPage(
-    titleEN char(50),
-    titlePT char(50),
-
-    TextEN char(50),
-    TextPT char(50)
+create table Translation(
+    keyValue varchar(100) primary key,
+    englishText varchar(1000),
+    portugueseText varchar(1000)
 );
 
-create table Cities(
-    titleEN varchar(50),
-    titlePT varchar(50),
-
+create table Products(
+    productID int primary key,
+    productEN char(50),
+    productPT varchar(50),
     descriptionEN varchar(250),
     descriptionPT varchar(250),
-
-    locationsEN varchar(100),
-    locationsPT varchar(100)
+    price varchar(20),
+    imageLink varchar(50)
 );
 
-insert into CountryPage(titleEN, titlePT, textEN, textPT) values
-(   
-    "Italy", 
-    "Itália",
-    "",
-    ""
-),
-
-(   
-    "",
-    "",
-    "Sicily",
-    "Sicília"
-),
-
-(   
-    "",
-    "",
-    "Rome",
-    "Roma"
-),
-
-(   
-    "",
-    "",
-    "Milan",
-    "Milão"
-);
-
-insert into Cities(titleEN, titlePT, descriptionEN, descriptionPT, locationsEN, locationsPT) values
-(   
-    "Sicily",
-    "Sicília",
-    "Italy's biggest peninsula, famous for its beaches, wine, and mafia history. Some recommended places to visit include:",
-    "A maior península da Itália, famosa pelas suas praias, vinhos, e história da máfia. Alguns locais recomendados para visitar incluem:",
-
-    "- Cathedral of Palermo
-    - Ancient Theatre of Taormina
-    - Royal Palace of Palermo",
-
-    "- Catedral de Palermo
-    - Teatro Antigo de Taormina
-    - Palácio Real de Palermo"
-),
-
-(   
-    "Rome",
-    "Roma",
-    "The capital of Italy, known for ancient history and remarkable archaeological sites. Some recommended places to visit include:",
-    "A capital da Itália, famosa pela história antiga e seus sítios arqueológicos. Alguns locais recomendados para visitar incluem:",
-
-    "- Colosseum
-    - Pantheon
-    - Vatican museums",
-
-    "- Coliseu
-    - Panteão
-    - Museus Vaticanos"
-),
-
-(
-    "Milan",
-    "Milão",
-    "The most luxurious and expensive place in Italy. Some recommended places to visit include:",
-    "O lugar mais luxuoso e caro da Itália. Alguns locais recomendados para visitar incluem:",
-
-    "- Cathedral of Milan
-    - Tour guide of Da Vinci's 'The Last Supper'
-    - Navigali boat trips",
-
-    "- Catedral de Milano
-    - Guia turístico da obra 'A Última Ceia' de Da Vinci
-    - Passeio de barco Navigali"
-),
-
-(
-
-),
-
-(
-
-),
-
-(
+create table Clients(
 
 );
+
+insert into Products(productEN,productPT,descriptionEN,descriptionPT,price,imageLink) values
+("Travel to Sicily","Viaja para a Sicília","Italy's biggest peninsula, famous for its beaches, wine, and mafia history. Some recommended places to visit include:","A maior península da Itália, famosa pelas suas praias, vinhos, e história da máfia. Alguns locais recomendados para visitar incluem:","$139.99","../images/sicily.jpg"),
+("Travel to Rome","Viaja para Roma","The capital of Italy, known for ancient history and remarkable archaeological sites. Some recommended places to visit include:","A capital da Itália, famosa pela história antiga e seus sítios arqueológicos. Alguns locais recomendados para visitar incluem:","$469.99","../images/rome.jpg"),
+("Travel to Milan","Viaja para Milão","The capital of Italy, known for ancient history and remarkable archaeological sites. Some recommended places to visit include:","A capital da Itália, famosa pela história antiga e seus sítios arqueológicos. Alguns locais recomendados para visitar incluem:","$689.99";"../images/milan.jpg"),
+("Travel to Bangkok","Viaja para Bangkok","The capital of Thailand, known for its vibrant culture, street food, and temples. Some recommended places to visit include:","A capital da Tailândia, conhecida pela sua cultura vibrante, comida de rua e templos. Alguns locais recomendados para visitar incluem:","$879.99","../images/bangkok.jpg"),
+("Travel to Khon Kaen","Viaja para Khon Kaen","Known for high-quality silk and local markets. Some recommended places to visit include:","Famosa pela seda de alta qualidade e mercados locais. Alguns locais recomendados para visitar incluem:","$919.99","../images/khon.jpg"),
+("Travel to Ko Phi Phi","Viaja para Ko Phi Phi","Beautiful islands with limestone cliffs and turquoise waters. Some recommended places to visit include:","Ilhas bonitas com falésias de calcário e águas turquesa. Alguns locais recomendados para visitar incluem:","$1239.99","../images/phiphi.jpg");
+
+insert into Translation(keyValue, englishText, portugueseText) values
+("LanguageKey","EnglishText","PortugueseText"),
+("HomeBtn","Home","Início"),
+("ProductBtn","Products","Produtos"),
+("RegisterBtn","Register","Registrar"),
+("LoginBtn","Login","Iniciar sessão"),
+("LogoutBtn","Logout","Sair"),
+("AdminBtn","Admin","Administrador"),
+("HomeText","Welcome! In this website, you can find information about two countries and some of their highly visited places. Indulge yourself in the wonders of these countries. Refer to the navigation bar to learn more.","Bem-vindo! Neste site, você encontrará informações sobre dois países e alguns de seus lugares mais visitados. Maravilhe-se com as maravilhas desses países. Consulte a barra de navegação para saber mais."),
+("Italy","Italy","Itália"),
+("Thailand","Thailand","Tailândia"),
+("RomeTitle","Rome","Roma"),
+("RomeHeader","Rome","Roma"),
+("RomeLink","https://en.wikipedia.org/wiki/Rome","https://pt.wikipedia.org/wiki/Roma"),
+("RomeDescription","The capital of Italy, known for ancient history and remarkable archaeological sites.","A capital da Itália, famosa pela história antiga e seus sítios arqueológicos."),
+("Recommendations","Some recommended places to visit include:","Alguns locais recomendados para visitar incluem:"),
+("Colosseum","Colosseum","Coliseu"),
+("Pantheon","Pantheon","Panteão"),
+("Museums","Vatican museums","Museus Vaticanos"),
+("MilanTitle","Milan","Milão"),
+("MilanHeader","Travel to Milan","Viaja para Milão"),
+("MilanLink","https://en.wikipedia.org/wiki/Milan","https://pt.wikipedia.org/wiki/Milão"),
+("MilanDescription","The most luxurious and expensive place in Italy.","O lugar mais luxuoso e caro da Itália."),
+("Cathedral","Cathedral of Milan","Catedral de Milão"),
+("TourGuide","Tour guide of Da Vinci's 'The Last Supper'","Guia turístico da obra 'A Última Ceia' de Da Vinci"),
+("Navigali","Navigali boat trip","Passeio de barco Navigali"),
+("SicilyTitle","Sicily","Sicília"),
+("SicilyHeader","Travel to Sicily","Viaja para a Sicília"),
+("SicilyLink","https://en.wikipedia.org/wiki/Sicily","https://pt.wikipedia.org/wiki/Sicília"),
+("SicilyDescription","Italy's biggest peninsula, famous for its beaches, wine, and mafia history.","A maior península da Itália, famosa pelas suas praias, vinhos, e história da máfia."),
+("Palermo","Cathedral of Palermo","Catedral de Palermo"),
+("Taormina","Ancient Theatre of Taormina","Teatro Antigo de Taormina"),
+("RoyalPalace","Royal Palace of Palermo","Palácio Real de Palermo"),
+("BangkokLink","https://en.wikipedia.org/wiki/Bangkok","https://pt.wikipedia.org/wiki/Bangkok"),
+("BangkokDescription","The capital of Thailand, known for its vibrant culture, street food, and temples.","A capital da Tailândia, conhecida pela sua cultura vibrante, comida de rua e templos."),
+("GrandPalace","Grand Palace","Grande Palácio"),
+("GiantSwing","The Giant Swing","o Balanço Gigante"),
+("WatArun","Wat Arun","Wat Arun"),
+("KhonKaenHeader","Khon Kaen","Khon Kaen"),
+("KhonKaenLink","https://en.wikipedia.org/wiki/Khon_Kaen","https://pt.wikipedia.org/wiki/Khon_Kaen"),
+("KhonKaenDescription","Known for high-quality silk and local markets.","Famosa pela seda de alta qualidade e mercados locais."),
+("NationalMuseum","Khon Kaen National Museum","Museu Nacional Khon Kaen"),
+("PhraNakhon","Phra Mahathat Kaen Nakhon","Phra Mahathat Kaen Nakhon"),
+("TonTann","Ton Tann Market","Mercado Ton Tann"),
+("KoPhiPhiHeader","Ko Phi Phi","Ko Phi Phi"),
+("KoPhiPhiLink","https://en.wikipedia.org/wiki/Ko_Phi_Phi","https://pt.wikipedia.org/wiki/Ko_Phi_Phi"),
+("KoPhiPhiDescription","Beautiful islands with limestone cliffs and turquoise waters.","Ilhas bonitas com falésias de calcário e águas turquesa."),
+("MayaBay","Maya Bay","Baía da Maia"),
+("VikingCave","Viking Cave","Gruta Viking"),
+("TonsaiBay","Tonsai Bay","Baía de Tonsai"),
+("LoginH1","Login to your account","Faça login no sua conta"),
+("LoginLabel1","Username","Nome de usuário"),
+("LoginLabel2","Password","Senha"),
+("LoginLabel3","Login","Entrar"),
+("LoginOut1","Please fill in all fields.","Por favor, preencha todos os campos."),
+("LoginOut2","Login successful!","Login realizado com sucesso!"),
+("LoginOut3","Incorrect username or password.","Nome de usuário ou senha incorretos."),
+("RegisterH1","Registration form","Formulário de registro"),
+("RegisterUsername","Username","Nome de usuário"),
+("RegisterPassword","Password","Senha"),
+("RegisterPasswordAgain","Repeat Password","Repita a senha"),
+("RegisterSubmit","Register","Registrar"),
+("RegisterSuccess","Registration successful!","Registro realizado com sucesso!"),
+("RegisterFailMatch","Passwords do not match.","As senhas não coincidem."),
+("RegisterFailExists","User already exists.","Usuário já existe."),
+("RegisterFailEmpty","Please fill all fields.","Por favor, preencha todos os campos."),
+("LoggedInAs","Logged in as","Conectado como");
+
 
 
 
