@@ -1,10 +1,10 @@
 create or replace database HTSTA_DB
 use HTSTA_DB;
 
-create table Translation(
+create table Translations(
     keyValue varchar(100) primary key,
-    englishText varchar(1000),
-    portugueseText varchar(1000)
+    english varchar(1000),
+    portuguese varchar(1000)
 );
 
 create table Products(
@@ -29,8 +29,7 @@ insert into Products(productEN,productPT,descriptionEN,descriptionPT,price,image
 ("Travel to Khon Kaen","Viaja para Khon Kaen","Known for high-quality silk and local markets. Some recommended places to visit include:","Famosa pela seda de alta qualidade e mercados locais. Alguns locais recomendados para visitar incluem:","$919.99","../images/khon.jpg"),
 ("Travel to Ko Phi Phi","Viaja para Ko Phi Phi","Beautiful islands with limestone cliffs and turquoise waters. Some recommended places to visit include:","Ilhas bonitas com falésias de calcário e águas turquesa. Alguns locais recomendados para visitar incluem:","$1239.99","../images/phiphi.jpg");
 
-insert into Translation(keyValue, englishText, portugueseText) values
-("LanguageKey","EnglishText","PortugueseText"),
+insert into Translations(keyValue, englishText, portugueseText) values
 ("HomeBtn","Home","Início"),
 ("ProductBtn","Products","Produtos"),
 ("RegisterBtn","Register","Registrar"),
@@ -41,41 +40,32 @@ insert into Translation(keyValue, englishText, portugueseText) values
 ("Italy","Italy","Itália"),
 ("Thailand","Thailand","Tailândia"),
 ("RomeTitle","Rome","Roma"),
-("RomeHeader","Rome","Roma"),
 ("RomeLink","https://en.wikipedia.org/wiki/Rome","https://pt.wikipedia.org/wiki/Roma"),
-("RomeDescription","The capital of Italy, known for ancient history and remarkable archaeological sites.","A capital da Itália, famosa pela história antiga e seus sítios arqueológicos."),
-("Recommendations","Some recommended places to visit include:","Alguns locais recomendados para visitar incluem:"),
 ("Colosseum","Colosseum","Coliseu"),
 ("Pantheon","Pantheon","Panteão"),
 ("Museums","Vatican museums","Museus Vaticanos"),
 ("MilanTitle","Milan","Milão"),
-("MilanHeader","Travel to Milan","Viaja para Milão"),
 ("MilanLink","https://en.wikipedia.org/wiki/Milan","https://pt.wikipedia.org/wiki/Milão"),
-("MilanDescription","The most luxurious and expensive place in Italy.","O lugar mais luxuoso e caro da Itália."),
 ("Cathedral","Cathedral of Milan","Catedral de Milão"),
 ("TourGuide","Tour guide of Da Vinci's 'The Last Supper'","Guia turístico da obra 'A Última Ceia' de Da Vinci"),
 ("Navigali","Navigali boat trip","Passeio de barco Navigali"),
 ("SicilyTitle","Sicily","Sicília"),
-("SicilyHeader","Travel to Sicily","Viaja para a Sicília"),
 ("SicilyLink","https://en.wikipedia.org/wiki/Sicily","https://pt.wikipedia.org/wiki/Sicília"),
-("SicilyDescription","Italy's biggest peninsula, famous for its beaches, wine, and mafia history.","A maior península da Itália, famosa pelas suas praias, vinhos, e história da máfia."),
 ("Palermo","Cathedral of Palermo","Catedral de Palermo"),
 ("Taormina","Ancient Theatre of Taormina","Teatro Antigo de Taormina"),
 ("RoyalPalace","Royal Palace of Palermo","Palácio Real de Palermo"),
+("BangkokTitle","Bangkok","Bangkok")
 ("BangkokLink","https://en.wikipedia.org/wiki/Bangkok","https://pt.wikipedia.org/wiki/Bangkok"),
-("BangkokDescription","The capital of Thailand, known for its vibrant culture, street food, and temples.","A capital da Tailândia, conhecida pela sua cultura vibrante, comida de rua e templos."),
 ("GrandPalace","Grand Palace","Grande Palácio"),
 ("GiantSwing","The Giant Swing","o Balanço Gigante"),
 ("WatArun","Wat Arun","Wat Arun"),
-("KhonKaenHeader","Khon Kaen","Khon Kaen"),
+("KhonKaenTitle","Khon Kaen","Khon Kaen"),
 ("KhonKaenLink","https://en.wikipedia.org/wiki/Khon_Kaen","https://pt.wikipedia.org/wiki/Khon_Kaen"),
-("KhonKaenDescription","Known for high-quality silk and local markets.","Famosa pela seda de alta qualidade e mercados locais."),
 ("NationalMuseum","Khon Kaen National Museum","Museu Nacional Khon Kaen"),
 ("PhraNakhon","Phra Mahathat Kaen Nakhon","Phra Mahathat Kaen Nakhon"),
 ("TonTann","Ton Tann Market","Mercado Ton Tann"),
-("KoPhiPhiHeader","Ko Phi Phi","Ko Phi Phi"),
+("KoPhiPhiTitle","Ko Phi Phi","Ko Phi Phi"),
 ("KoPhiPhiLink","https://en.wikipedia.org/wiki/Ko_Phi_Phi","https://pt.wikipedia.org/wiki/Ko_Phi_Phi"),
-("KoPhiPhiDescription","Beautiful islands with limestone cliffs and turquoise waters.","Ilhas bonitas com falésias de calcário e águas turquesa."),
 ("MayaBay","Maya Bay","Baía da Maia"),
 ("VikingCave","Viking Cave","Gruta Viking"),
 ("TonsaiBay","Tonsai Bay","Baía de Tonsai"),

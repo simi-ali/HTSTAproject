@@ -1,5 +1,6 @@
 <?php
 session_start();
+$connection = new mysqli("localhost", "root", "","HTSTA_DB");
 
 if (!isset($_SESSION["UserLogged"])) {
     $_SESSION["UserLogged"] = false;
@@ -16,7 +17,7 @@ function asset($path) {
     return BASE_DIR . '/' . ltrim($path, '/');
 }
 
-$arrayOfTranslations = [];
+/*$arrayOfTranslations = [];
 if (($fileTranslations = fopen("Translation.csv", "r")) !== false) {
     fgetcsv($fileTranslations, 0, ";");
     while (($pieces = fgetcsv($fileTranslations, 0, ";")) !== false) {
@@ -28,6 +29,19 @@ if (($fileTranslations = fopen("Translation.csv", "r")) !== false) {
     }
     fclose($fileTranslations);
 }
+*/
+
+$sqlSelectTranslations = $connection->prepare("SELECT * from Translations");
+$sqlSelectTranslations->execute();
+$sqlResult = $sqlSelectTranslations->get_result();
+while ($row = $sqlResult->fetch_assoc()) {
+    if($language == "EN"){
+        $sqlSelectTranslations[$row["keyValue"]] = $row["englishText"];
+    }
+    else{
+        $sqlSelectTranslations[$row["keyValue"]] = $row["portugueseText"];
+    }
+};
 
 $pages = [
     "Home"      => ["label" => $arrayOfTranslations["HomeBtn"], "url" => "index.php"],
