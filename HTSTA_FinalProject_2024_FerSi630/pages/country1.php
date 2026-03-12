@@ -12,27 +12,25 @@
 	include("commonCode.php");
 	navBar("Products");
 
-	$sqlSelectProducts = $connection->prepare("SELECT * from Products");
-	$sqlSelectProducts->execute();
-	$sqlResultproducts = $sqlSelectProducts->get_result();
-	while ($row = $sqlResultProducts->fetch_assoc()) {
-		$row[($language == "EN") ? "productEN" : "productPT"]{
-			$sqlSelectProducts[$row[""]] = $row["english"];
-		} else {
-			$arrayOfTranslations[$row["keyValue"]] = $row["portuguese"];
-		}
-	};
 
 	?>
 	<main>
-
+		
 		<h1><a href="https://en.wikipedia.org/wiki/Italy" target="blank_"><?= $arrayOfTranslations["Italy"] ?></a></h1>
 		<h2>space</h2>
+		<?php 
+		$sqlQuery=$connection->prepare("select * from products");
+		$sqlQuery->execute();
+		$result=$sqlQuery->get_result();
+		while($row=$result->fetch_assoc()){
+		?>
 		<figure>
-			<a href="sicily.php"> <img src="../images/sicily_tn.jpg" alt="Sicily"> </a>
-
+			<a href="<?= $row["imageLink"] ?>"> <img src="../images/sicily_tn.jpg" alt="Sicily"> </a>
 			<figcaption>
 				<a href="sicily.php">Sicily</a>
+			</figcaption>
+			<figcaption>
+				<?= $row["price"] ?>
 			</figcaption>
 
 			<a href="rome.php"> <img src="../images/rome_tn.jpg" alt="Rome"> </a>
@@ -69,7 +67,12 @@
 				<a href="phiphi.php">Ko Phi Phi</a>
 			</figcaption>
 		</figure>
-		</figure>
+
+		<form method="POST"> 
+			<input type="number" placeholder="quantity" name="quantityToBuy">
+			<input type="hidden" value="" name="itemToBuy">
+			<input type="submit" value="Buy">
+		</form>
 		<h2>space</h2>
 		<h2>space</h2>
 	</main>

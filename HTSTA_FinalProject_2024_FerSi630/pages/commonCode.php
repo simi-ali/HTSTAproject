@@ -1,6 +1,23 @@
 <?php
 session_start();
 $connection = new mysqli("localhost", "root", "","HTSTA_DB");
+if (isset($_POST["Cart"])) {
+
+}
+else {
+    $_SESSION["Cart"] = [];
+}
+
+if (isset($_POST["itemToBuy"], $_POST["quantityToBuy"])) {
+    $item = $_POST["itemToBuy"];
+    if (isset($_SESSION["Cart"][$item])) {
+            $_SESSION["Cart"][$item] = $_SESSION["Cart"][$item] + $_POST["Cart"]["quantityToBuy"];
+    }
+    else {
+        $_SESSION["Cart"][$item] = $_POST["Cart"]["quantityToBuy"];
+    }
+
+}
 
 if (!isset($_SESSION["UserLogged"])) {
     $_SESSION["UserLogged"] = false;
@@ -17,8 +34,8 @@ function asset($path) {
     return BASE_DIR . '/' . ltrim($path, '/');
 }
 
-/*$arrayOfTranslations = [];
-if (($fileTranslations = fopen("Translation.csv", "r")) !== false) {
+$arrayOfTranslations = [];
+/*if (($fileTranslations = fopen("Translation.csv", "r")) !== false) {
     fgetcsv($fileTranslations, 0, ";");
     while (($pieces = fgetcsv($fileTranslations, 0, ";")) !== false) {
         if (count($pieces) >= 3) {
@@ -36,10 +53,10 @@ $sqlSelectTranslations->execute();
 $sqlResult = $sqlSelectTranslations->get_result();
 while ($row = $sqlResult->fetch_assoc()) {
     if($language == "EN"){
-        $sqlSelectTranslations[$row["keyValue"]] = $row["englishText"];
+        $arrayOfTranslations[$row["keyValue"]] = $row["english"];
     }
     else{
-        $sqlSelectTranslations[$row["keyValue"]] = $row["portugueseText"];
+        $arrayOfTranslations[$row["keyValue"]] = $row["portuguese"];
     }
 };
 
