@@ -26,6 +26,8 @@ if (!isset($_SESSION["IsAdmin"])) {
     $_SESSION["IsAdmin"] = false;
 }
 
+$admin = "simi123";
+
 $language = isset($_GET["lang"]) ? $_GET["lang"] : "EN";
 
 define('BASE_DIR', '/HTSTAproject/HTSTA_FinalProject_2024_FerSi630');
@@ -128,4 +130,23 @@ function userAlreadyRegistered($checkedUser)
     return false;
     */
 }
+
+function verifyUserCredentials($checkedUser, $checkedPsw)
+{
+    global $admin;
+    $connection = new mysqli("localhost", "root","","HTSTA_DB");
+    $sqlQuery = $connection->prepare("SELECT * FROM Clients");
+    $sqlQuery->execute();
+    $result = $sqlQuery->get_result();
+    while ($row=$result->fetch_assoc()) {
+        $fileUser = isset($row["username"]) ? trim($row["username"]) : '';
+        $filePsw = isset($row["password"]) ? trim($row["password"]) : '';
+        $admin = isset($row["isadmin"]) ? trim($row["isadmin"]) : 'false';
+        if ($fileUser === $checkedUser && password_verify($checkedPsw, $filePsw)) {
+            return true;
+        }
+    }
+    return false;
+}
+ 
 ?>

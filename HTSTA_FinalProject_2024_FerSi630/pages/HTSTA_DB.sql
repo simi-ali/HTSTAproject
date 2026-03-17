@@ -16,6 +16,13 @@ create table Products(
     pageLink varchar(50)
 );
 
+create table Clients(
+    clientID int auto_increment primary key,
+    username varchar(50),
+    pswd varchar(255),
+    isadmin boolean default false
+);
+
 insert into Products(productEN,productPT,price,imageLink,pageLink) values
 ("Sicily","Sicília","139.99","../images/sicily.jpg","sicily.php"),
 ("Rome","Roma","469.99","../images/rome.jpg","rome.php"),
@@ -23,6 +30,9 @@ insert into Products(productEN,productPT,price,imageLink,pageLink) values
 ("Bangkok","Bangkok","879.99","../images/bangkok.jpg","bangkok.php"),
 ("KhonKaen","Khon Kaen","919.99","../images/khon.jpg","khon.php"),
 ("KoPhiPhi","Ko Phi Phi","1239.99","../images/phiphi.jpg","phiphi.php");
+
+insert into Clients(username,pswd,isadmin) values
+("simi123","$2y$10$lKOE2sUwIkbv2heQpk3qNOxg5e7HK2Xty1w8SBRxyoskr0dVCvrne","true");
 
 insert into Translations(keyValue,english,portuguese) values
 ("HomeText","In this website, you can find information about two countries and some of their highly visited places. Get your tickets now!","Neste site, encontrará informação sobre dois países e alguns dos seus locais mais visitados. Compre já os seus bilhetes"),
