@@ -99,7 +99,8 @@ insert into Translations(keyValue,english,portuguese) values
 ("RegisterFailExists","User already exists.","Usuário já existe."),
 ("RegisterFailEmpty","Please fill all fields.","Por favor, preencha todos os campos."),
 ("LoggedInAs","Logged in as","Conectado como"),
-("Recommendations","Some recommended places to visit include:","Alguns locais recomendados para visitar incluem:");
+("Recommendations","Some recommended places to visit include:","Alguns locais recomendados para visitar incluem:"),
+("CartBtn","Cart","Carrinho");
 
 
 

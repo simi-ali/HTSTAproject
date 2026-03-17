@@ -36,17 +36,21 @@ if (isset($_POST["Username"], $_POST["psw"], $_POST["pswAgain"])) {
         $showForm = true;
     } else {
         $hash = password_hash($psw, PASSWORD_DEFAULT);
+        $sqlQuery = $connection->prepare("INSERT INTO Clients(username, pswd, isadmin) values (?,?,'false')");
+        $sqlQuery->bind_param("ss",$user,$hash );
+        $sqlQuery->execute();
 
         // Append user to CSV without adding extra newlines
-        $file = fopen("Clients.csv", "a");
+        /*$file = fopen("Clients.csv", "a");
         if (filesize("Clients.csv") > 0) {
             fwrite($file, "\n");
         }
         fwrite($file, "$user;$hash");
         fclose($file);
-
+        */
         echo "<p>{$arrayOfTranslations["RegisterSuccess"]}</p>";
     }
+    
 }
 
 if ($showForm):

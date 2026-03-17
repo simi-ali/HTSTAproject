@@ -1,22 +1,18 @@
 <?php
 session_start();
-$connection = new mysqli("localhost", "root", "","HTSTA_DB");
+$connection = new mysqli("localhost", "root", "", "HTSTA_DB");
 if (isset($_POST["Cart"])) {
-
-}
-else {
+} else {
     $_SESSION["Cart"] = [];
 }
 
 if (isset($_POST["itemToBuy"], $_POST["quantityToBuy"])) {
     $item = $_POST["itemToBuy"];
     if (isset($_SESSION["Cart"][$item])) {
-            $_SESSION["Cart"][$item] = $_SESSION["Cart"][$item] + $_POST["Cart"]["quantityToBuy"];
-    }
-    else {
+        $_SESSION["Cart"][$item] = $_SESSION["Cart"][$item] + $_POST["Cart"]["quantityToBuy"];
+    } else {
         $_SESSION["Cart"][$item] = $_POST["Cart"]["quantityToBuy"];
     }
-
 }
 
 if (!isset($_SESSION["UserLogged"])) {
@@ -32,7 +28,8 @@ $language = isset($_GET["lang"]) ? $_GET["lang"] : "EN";
 
 define('BASE_DIR', '/HTSTAproject/HTSTA_FinalProject_2024_FerSi630');
 
-function asset($path) {
+function asset($path)
+{
     return BASE_DIR . '/' . ltrim($path, '/');
 }
 
@@ -54,10 +51,9 @@ $sqlSelectTranslations = $connection->prepare("SELECT * from Translations");
 $sqlSelectTranslations->execute();
 $sqlResult = $sqlSelectTranslations->get_result();
 while ($row = $sqlResult->fetch_assoc()) {
-    if($language == "EN"){
+    if ($language == "EN") {
         $arrayOfTranslations[$row["keyValue"]] = $row["english"];
-    }
-    else{
+    } else {
         $arrayOfTranslations[$row["keyValue"]] = $row["portuguese"];
     }
 };
@@ -66,7 +62,8 @@ $pages = [
     "Home"      => ["label" => $arrayOfTranslations["HomeBtn"], "url" => "index.php"],
     "Products"  => ["label" => $arrayOfTranslations["ProductBtn"], "url" => "country1.php"],
     "Register"  => ["label" => $arrayOfTranslations["RegisterBtn"], "url" => "register.php"],
-    "Login"     => ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"]
+    "Login"     => ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"],
+    "Cart"      => ["label" => $arrayOfTranslations["CartBtn"], "url" => "shoppingCart.php"]
 ];
 
 if (!empty($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"] === true) {
@@ -81,7 +78,7 @@ function navBar($currentPage)
     $username = $_SESSION["Username"] ?? "";
 ?>
     <header>
-        <img id="logo" src="<?= asset('../images/lpem.png') ?>" alt="banner">
+        <img id="logo" src="<?='../images/lpem.png' ?>" alt="banner">
         <nav>
             <ul>
                 <?php foreach ($pages as $key => $pg): ?>
@@ -134,19 +131,25 @@ function userAlreadyRegistered($checkedUser)
 function verifyUserCredentials($checkedUser, $checkedPsw)
 {
     global $admin;
-    $connection = new mysqli("localhost", "root","","HTSTA_DB");
-    $sqlQuery = $connection->prepare("SELECT * FROM Clients");
+    $connection = new mysqli("localhost", "root", "", "HTSTA_DB");
+    $sqlQuery = $connection->prepare("SELECT * FROM Clients WHERE username = ?");
+    $sqlQuery->bind_param("s", $checkedUser);
     $sqlQuery->execute();
     $result = $sqlQuery->get_result();
-    while ($row=$result->fetch_assoc()) {
-        $fileUser = isset($row["username"]) ? trim($row["username"]) : '';
-        $filePsw = isset($row["password"]) ? trim($row["password"]) : '';
-        $admin = isset($row["isadmin"]) ? trim($row["isadmin"]) : 'false';
-        if ($fileUser === $checkedUser && password_verify($checkedPsw, $filePsw)) {
-            return true;
-        }
+    $row = $result->fetch_assoc();
+    //while ($row=$result->fetch_assoc()) {
+    //$fileUser = isset($row["username"]) ? trim($row["username"]) : '';
+    $filePsw = $row["pswd"]; //isset($row["pswd"]) ? trim($row["pswd"]) : '';
+    $admin = $row["isadmin"];//isset($row["isadmin"]) ? trim($row["isadmin"]) : 'false';
+    //print($checkedPsw);
+    //print($filePsw);
+    if (password_verify($checkedPsw, $filePsw)) {
+      //  print("Success login");
+        return true;
     }
+    //}
+    //print("FAIL login");
     return false;
 }
- 
+
 ?>
