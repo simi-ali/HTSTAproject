@@ -19,60 +19,25 @@
 		<h1><a href="https://en.wikipedia.org/wiki/Italy" target="blank_"><?= $arrayOfTranslations["Italy"] ?></a></h1>
 		<h2>space</h2>
 		<?php 
-		$sqlQuery=$connection->prepare("select * from products");
+		$sqlQuery=$connection->prepare("SELECT * FROM Products");
 		$sqlQuery->execute();
 		$result=$sqlQuery->get_result();
 		while($row=$result->fetch_assoc()){
 		?>
 		<figure>
-			<a href="<?= $row["imageLink"] ?>"> <img src="../images/sicily_tn.jpg" alt="Sicily"> </a>
-			<figcaption>
-				<a href="sicily.php">Sicily</a>
-			</figcaption>
-			<figcaption>
-				<?= $row["price"] ?>
-			</figcaption>
-
-			<a href="rome.php"> <img src="../images/rome_tn.jpg" alt="Rome"> </a>
-
-			<figcaption>
-				<a href="rome.php">Rome</a>
-			</figcaption>
-
-			<a href="milan.php"> <img src="../images/milan_tn.jpg" alt="Milan"> </a>
-
-			<figcaption>
-				<a href="milan.php">Milan</a>
-			</figcaption>
-		</figure>
-		<h1><a href="https://en.wikipedia.org/wiki/Thailand" target="blank_"><?= $arrayOfTranslations["Thailand"]  ?></a></h1>
-		<h2>space</h2>
-
-		<figure>
-			<a href="bangkok.php"> <img src="../images/bangkok.jpg" alt="Bangkok" width="50%"> </a>
-
-			<figcaption>
-				<a href="bangkok.php">Bangkok</a>
-			</figcaption>
-
-			<a href="khon.php"> <img src="../images/khon.jpg" href="khon.php" alt="Khon Kaen" width="50%"> </a>
-
-			<figcaption>
-				<a href="khon.php">Khon Kaen</a>
-			</figcaption>
-
-			<a href="phiphi.php"> <img src="../images/phiphi.jpg" alt="Ko Phi Phi" width="50%"> </a>
-
-			<figcaption>
-				<a href="phiphi.php">Ko Phi Phi</a>
-			</figcaption>
-		</figure>
-
-		<form method="POST"> 
-			<input type="number" placeholder="quantity" name="quantityToBuy">
-			<input type="hidden" value="" name="itemToBuy">
-			<input type="submit" value="Buy">
-		</form>
+                <figcaption><?= $row[($language == "EN") ? "productEN" : "productPT"] ?></figcaption>
+                <img src="<?= $row["imageLink"] ?>" alt="<?= $row["productEN"] ?>" width="300">
+                <figcaption><a href="<?= $row["pageLink"] ?>?lang=<?= $language ?>"> </a></figcaption>
+                <figcaption><?= $row["price"] ?>€</figcaption>
+                <form method="POST">
+                    <input tpye="number" placeholder="quantity" name="quantityToBuy">
+                    <input type="hidden" value="<?= $row["productID"] ?>" name="itemToBuy"></input>
+                    <input type="submit" value="buy">
+                </form>
+            </figure>
+        <?php
+        }
+        ?>
 		<h2>space</h2>
 		<h2>space</h2>
 	</main>

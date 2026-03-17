@@ -13,14 +13,16 @@
 		?>
 		<main>
 			<h2>space</h2>
-			<h1>Welcome!</h1>
+			<h1>
+				<?= $arrayOfTranslations["Welcome"] ?>
+			</h1>
 			<h2>space</h2>
-			<p>	In this website, you can find information about two countries and some of their highly visited places. 
-				Indulge yourself in the wonders of these countries.
+			<p>	
+				<?= $arrayOfTranslations["HomeText"] ?>
 			</p>
 			<h2>space</h2>
 			<p>
-				Refer to the navigation bar to learn more.
+				<?= $arrayOfTranslations["HomeNav"] ?>
 			</p>
 			<h2>space</h2>
 			<img src="../images/smiley.jpg" alt="Smiley face" width="40%">

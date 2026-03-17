@@ -16,7 +16,7 @@
 	</header>
 	<main>
 		<h2>space</h2>
-		<h1><a href="https://en.wikipedia.org/wiki/Ko_Phi_Phi" target="blank_">Ko Phi Phi</a></h1>
+		<h1><a href="https://en.wikipedia.org/wiki/Ko_Phi_Phi" target="blank_"><?= $arrayOfTranslations["KoPhiPhiTitle"] ?></a></h1>
 		<h2>space</h2>
 
 		<a href="../images/phiphi.jpg"><img src="../images/phiphi.jpg" alt="Ko Phi Phi" style="width: 70%"></a>

@@ -19,8 +19,6 @@
 			<h1><a href="https://en.wikipedia.org/wiki/Sicily" target="blank_"><?= $arrayOfTranslations["SicilyTitle"]  ?></a></h1>
 		<h2>space</h2>
 
-        <h1><a href="https://en.wikipedia.org/wiki/Sicily" target="_blank"></a></h1>
-
         <a href="../images/sicily.jpg"><img src="../images/sicily.jpg" alt="Sicily" style="width: 50%"></a>
 
         <p>

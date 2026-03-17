@@ -79,7 +79,7 @@ function navBar($currentPage)
     $username = $_SESSION["Username"] ?? "";
 ?>
     <header>
-        <img id="logo" src="<?= asset('images/lpem.png') ?>" alt="banner">
+        <img id="logo" src="<?= asset('../images/lpem.png') ?>" alt="banner">
         <nav>
             <ul>
                 <?php foreach ($pages as $key => $pg): ?>
@@ -116,7 +116,7 @@ function navBar($currentPage)
 
 function userAlreadyRegistered($checkedUser)
 {
-    if (($fHandler = fopen("Clients.csv", "r")) !== false) {
+    /* if (($fHandler = fopen("Clients.csv", "r")) !== false) {
         while (($items = fgetcsv($fHandler, 0, ";")) !== false) {
             if (trim($items[0]) === trim($checkedUser)) {
                 fclose($fHandler);
@@ -126,5 +126,6 @@ function userAlreadyRegistered($checkedUser)
         fclose($fHandler);
     }
     return false;
+    */
 }
 ?>
