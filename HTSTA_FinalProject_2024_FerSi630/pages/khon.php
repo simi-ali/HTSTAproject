@@ -16,7 +16,7 @@
 	</header>
 	<main>
 		<h2>space</h2>
-		<h1><a href="https://en.wikipedia.org/wiki/Khon_Kaen" target="blank_"><?= $arrayOfTranslations["KhonKeanTitle"] ?></a></h1>
+		<h1><a href="https://en.wikipedia.org/wiki/Khon_Kaen" target="blank_"><?= $arrayOfTranslations["KhonKaenTitle"] ?></a></h1>
 		<h2>space</h2>
 
 		<a href="../images/khon.jpg"><img src="../images/khon.jpg" alt="Khon Kaen" style="width: 70%"></a>
