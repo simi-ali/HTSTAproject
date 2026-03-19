@@ -1,7 +1,7 @@
 <?php
 session_start();
 $connection = new mysqli("localhost", "root", "", "HTSTA_DB");
-if (isset($_POST["Cart"])) {
+if (isset($_SESSION["Cart"])) {
 } else {
     $_SESSION["Cart"] = [];
 }
@@ -9,9 +9,9 @@ if (isset($_POST["Cart"])) {
 if (isset($_POST["itemToBuy"], $_POST["quantityToBuy"])) {
     $item = $_POST["itemToBuy"];
     if (isset($_SESSION["Cart"][$item])) {
-        $_SESSION["Cart"][$item] = $_SESSION["Cart"][$item] + $_POST["Cart"]["quantityToBuy"];
+        $_SESSION["Cart"][$item] = $_SESSION["Cart"][$item] + $_POST["quantityToBuy"];
     } else {
-        $_SESSION["Cart"][$item] = $_POST["Cart"]["quantityToBuy"];
+        $_SESSION["Cart"][$item] = $_POST["quantityToBuy"];
     }
 }
 
@@ -20,6 +20,10 @@ if (!isset($_SESSION["UserLogged"])) {
 }
 if (!isset($_SESSION["IsAdmin"])) {
     $_SESSION["IsAdmin"] = false;
+}
+
+if (!isset($_SESSION["UserType"])) {
+    $_SESSION["UserType"] = "regular";
 }
 
 $admin = "simi123";
@@ -63,7 +67,8 @@ $pages = [
     "Products"  => ["label" => $arrayOfTranslations["ProductBtn"], "url" => "country1.php"],
     "Register"  => ["label" => $arrayOfTranslations["RegisterBtn"], "url" => "register.php"],
     "Login"     => ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"],
-    "Cart"      => ["label" => $arrayOfTranslations["CartBtn"], "url" => "shoppingCart.php"]
+    "Cart"      => ["label" => $arrayOfTranslations["CartBtn"], "url" => "shoppingCart.php"],
+    "Admin"     => ["label" => $arrayOfTranslations["AdminBtn"], "url" => "admin.php"]
 ];
 
 if (!empty($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"] === true) {
@@ -150,6 +155,16 @@ function verifyUserCredentials($checkedUser, $checkedPsw)
     //}
     //print("FAIL login");
     return false;
+}
+
+function getCartCount() {
+    $count = 0;
+    if (isset($_SESSION["Cart"]) && !empty($_SESSION["Cart"])) {
+        foreach ($_SESSION["Cart"] as $qty) {
+            $count += $qty;
+        }
+    }
+    return $count;
 }
 
 ?>

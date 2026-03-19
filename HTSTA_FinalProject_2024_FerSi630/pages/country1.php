@@ -4,7 +4,7 @@
 <head>
 	<title>HTSTA Final Project</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="../style.css?<?= time() ?>">
 </head>
 
 <body>
@@ -25,12 +25,11 @@
 		while($row=$result->fetch_assoc()){
 		?>
 		<figure>
-                <figcaption><?= $row[($language == "EN") ? "productEN" : "productPT"] ?></figcaption>
-                <img src="<?= $row["imageLink"] ?>" alt="<?= $row["productEN"] ?>" width="300">
-                <figcaption><a href="<?= $row["pageLink"] ?>?lang=<?= $language ?>"> </a></figcaption>
+                <div class="pageLink"><a href="<?= $row["pageLink"] ?>"><figcaption><?= $row[($language == "EN") ? "productEN" : "productPT"] ?></figcaption></a></div>
+                <a href="<?= $row["imageLink"] ?>"><img src="<?= $row["imageLink"] ?>" alt="<?= $row["productEN"] ?>" width="300"></a>
                 <figcaption><?= $row["price"] ?>€</figcaption>
                 <form method="POST">
-                    <input tpye="number" placeholder="quantity" name="quantityToBuy">
+                    <input type="number" placeholder="quantity" name="quantityToBuy">
                     <input type="hidden" value="<?= $row["productID"] ?>" name="itemToBuy"></input>
                     <input type="submit" value="buy">
                 </form>

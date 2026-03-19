@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?<?= time() ?>">
     <title>Admin</title>
 </head>
 
@@ -13,11 +13,12 @@
 include_once("commonCode.php");
 navBar("Admin");
 
-if (!$_SESSION["UserLogged"] || empty($_SESSION["IsAdmin"]) || $_SESSION["IsAdmin"] !== true) {
+/* if (!$_SESSION["UserLogged"] || empty($_SESSION["IsAdmin"]) || $_SESSION["IsAdmin"] !== true) {
     echo "<p class='error'>You do not have admin permissions.</p>";
     echo "<meta http-equiv='refresh' content='2; url=index.php?lang=$language'>";
     exit;
 }
+    */
 
 $placesFile = "places.csv";
 $translationsFile = "Translation.csv";

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HTSTA Final Project</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?<?= time() ?>">
 </head>
 
 <body>

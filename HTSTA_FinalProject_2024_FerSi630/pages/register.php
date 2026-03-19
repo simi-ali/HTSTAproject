@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css?<?= time() ?>">
 </head>
 
 <body>
@@ -17,6 +17,8 @@ navBar("Register");
 
 <?php
 $showForm = true;
+
+$userType = "regular";
 
 if (isset($_POST["Username"], $_POST["psw"], $_POST["pswAgain"])) {
     $showForm = false;
@@ -36,8 +38,8 @@ if (isset($_POST["Username"], $_POST["psw"], $_POST["pswAgain"])) {
         $showForm = true;
     } else {
         $hash = password_hash($psw, PASSWORD_DEFAULT);
-        $sqlQuery = $connection->prepare("INSERT INTO Clients(username, pswd, isadmin) values (?,?,'false')");
-        $sqlQuery->bind_param("ss",$user,$hash );
+        $sqlQuery = $connection->prepare("INSERT INTO Clients(username, pswd, isadmin, usertype) values (?,?,'false',?)");
+        $sqlQuery->bind_param("sss",$user,$hash,$userType );
         $sqlQuery->execute();
 
         // Append user to CSV without adding extra newlines
