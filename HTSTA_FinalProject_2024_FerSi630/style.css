@@ -357,3 +357,9 @@ table tr:nth-child(even) {
     font-weight: bold;
 }
 
+#allPreviousMessages {
+  height: 200px;
+  background-color: bisque;
+  border: 1px solid red;
+  width: 50px;
+}

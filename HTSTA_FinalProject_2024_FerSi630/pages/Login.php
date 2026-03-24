@@ -33,7 +33,7 @@
             // failed login
             print($arrayOfTranslations["LoginOut3"]);
             $aShowForm = true;
-            $_SESSION["ADMIN"] = 0;
+            $_SESSION["IsAdmin"] = 0;
         }
     }
  

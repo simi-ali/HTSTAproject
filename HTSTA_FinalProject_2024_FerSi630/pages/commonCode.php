@@ -68,7 +68,8 @@ $pages = [
     "Register"  => ["label" => $arrayOfTranslations["RegisterBtn"], "url" => "register.php"],
     "Login"     => ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"],
     "Cart"      => ["label" => $arrayOfTranslations["CartBtn"], "url" => "shoppingCart.php"],
-    "Admin"     => ["label" => $arrayOfTranslations["AdminBtn"], "url" => "admin.php"]
+    "Admin"     => ["label" => $arrayOfTranslations["AdminBtn"], "url" => "admin.php"],
+    "Forum"     => ["label" => $arrayOfTranslations["ForumBtn"], "url" => "forum.php"]
 ];
 
 if (!empty($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"] === true) {

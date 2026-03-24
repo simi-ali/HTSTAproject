@@ -2,26 +2,33 @@ create or replace database HTSTA_DB;
 use HTSTA_DB;
 
 create table Translations(
-    keyValue varchar(100) primary key,
-    english varchar(1000),
-    portuguese varchar(1000)
+    keyValue    varchar(100) primary key,
+    english     varchar(1000),
+    portuguese  varchar(1000)
 );
 
 create table Products(
-    productID int auto_increment primary key,
-    productEN char(50),
-    productPT varchar(50),
-    price varchar(20),
-    imageLink varchar(50),
-    pageLink varchar(50)
+    productID   int auto_increment primary key,
+    productEN   char(50),
+    productPT   varchar(50),
+    price       varchar(20),
+    imageLink   varchar(50),
+    pageLink    varchar(50)
 );
 
 create table Clients(
-    clientID int auto_increment primary key,
-    username varchar(50),
-    pswd varchar(255),
-    isadmin boolean default false,
-    usertype char(10)
+    clientID    int auto_increment primary key,
+    username    varchar(50) unique,
+    pswd        varchar(255),
+    isadmin     boolean default false,
+    usertype    char(10)
+);
+
+create table Messages(
+    messageID   int primary key auto_increment,
+    messageText varchar(50),
+    username    varchar(50) not null,
+    foreign key (username) references Clients(username)
 );
 
 insert into Products(productEN,productPT,price,imageLink,pageLink) values
@@ -101,7 +108,8 @@ insert into Translations(keyValue,english,portuguese) values
 ("RegisterFailEmpty","Please fill all fields.","Por favor, preencha todos os campos."),
 ("LoggedInAs","Logged in as","Conectado como"),
 ("Recommendations","Some recommended places to visit include:","Alguns locais recomendados para visitar incluem:"),
-("CartBtn","Cart","Carrinho");
+("CartBtn","Cart","Carrinho"),
+("ForumBtn","Forum","Forum");
 
 
 
