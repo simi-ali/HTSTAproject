@@ -26,7 +26,7 @@ if (!isset($_SESSION["UserType"])) {
     $_SESSION["UserType"] = "regular";
 }
 
-$admin = "simi123";
+
 
 $language = isset($_GET["lang"]) ? $_GET["lang"] : "EN";
 
@@ -64,15 +64,18 @@ while ($row = $sqlResult->fetch_assoc()) {
 
 $pages = [
     "Home"      => ["label" => $arrayOfTranslations["HomeBtn"], "url" => "index.php"],
-    "Products"  => ["label" => $arrayOfTranslations["ProductBtn"], "url" => "country1.php"],
-    "Register"  => ["label" => $arrayOfTranslations["RegisterBtn"], "url" => "register.php"],
-    "Login"     => ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"],
-    "Cart"      => ["label" => $arrayOfTranslations["CartBtn"], "url" => "shoppingCart.php"],
-    "Admin"     => ["label" => $arrayOfTranslations["AdminBtn"], "url" => "admin.php"],
-    "Forum"     => ["label" => $arrayOfTranslations["ForumBtn"], "url" => "forum.php"]
+    "Products"  => ["label" => $arrayOfTranslations["ProductBtn"], "url" => "country1.php"]
 ];
 
-if (!empty($_SESSION["IsAdmin"]) && $_SESSION["IsAdmin"] === true) {
+if($_SESSION["UserLogged"] == false){
+    $pages["Register"] = ["label" => $arrayOfTranslations["RegisterBtn"], "url" => "register.php"];
+    $pages["Login"] = ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"];
+}
+if($_SESSION["UserLogged"] == true){
+    $pages["Cart"] = ["label" => $arrayOfTranslations["CartBtn"], "url" => "shoppingCart.php"];
+    $pages["Forum"] = ["label" => $arrayOfTranslations["ForumBtn"], "url" => "forum.php"];
+}
+if($_SESSION["UserLogged"] == true && $_SESSION["IsAdmin"] == 1){
     $pages["Admin"] = ["label" => $arrayOfTranslations["AdminBtn"], "url" => "admin.php"];
 }
 

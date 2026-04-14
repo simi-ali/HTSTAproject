@@ -3,126 +3,100 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../style.css?<?= time() ?>">
-    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="../style.css?<?= time() ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin page</title>
 </head>
 
 <body>
+    <?php
+    include_once("commonCode.php");
+    navBar("Admin");
 
-<?php
-include_once("commonCode.php");
-navBar("Admin");
+    // Define constants at the top level
+    define('ALLOWED_FILES', [
+        'image/png'  => 'png',
+        'image/jpeg' => 'jpg',
+        'image/jpg'  => 'jpg',
+        'image/pjpeg' => 'jpg',
+        'image/x-jpeg' => 'jpg'
+    ]);
+    define('MAX_SIZE', 5 * 1024 * 1024); // 5MB
+    define('UPLOAD_DIR', __DIR__ . '/images');
+    ?>
+    <h2>Admin Panel</h2>
+    <p>Welcome to the admin panel. Here you can manage the webshop.</p>
+    <?php
+    if ($_SESSION["IsAdmin"] == 1) {
+        print("<p>You have administrative privileges.</p>");
 
-/* if (!$_SESSION["UserLogged"] || empty($_SESSION["IsAdmin"]) || $_SESSION["IsAdmin"] !== true) {
-    echo "<p class='error'>You do not have admin permissions.</p>";
-    echo "<meta http-equiv='refresh' content='2; url=index.php?lang=$language'>";
-    exit;
-}
-    */
+        // Handle Product Addition with Image Upload
+        if (isset($_POST["add_product"])) {
+            if (
+                !isset($_POST["pdc_name"], $_POST["pdc_price"], $_POST["pdc_namePT"], $_POST["pg_link"]) ||
+                empty($_POST["pdc_name"]) || empty($_POST["pdc_price"]) || !isset($_FILES['fileToUpload'])
+            ) {
+                print("<p style='color: red;'>Some information is missing or no image was uploaded!</p><br>");
+            } else {
+                // Process image upload first
+                $file = $_FILES['fileToUpload'];
+                $pdc_link = ""; // Will store the filename
 
-$placesFile = "places.csv";
-$translationsFile = "Translation.csv";
+                if ($file['error'] === UPLOAD_ERR_OK) {
+                    if (filesize($file['tmp_name']) <= MAX_SIZE) {
+                        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                        $mime_type = finfo_file($finfo, $file['tmp_name']);
+                        finfo_close($finfo);
 
-function saveCSVLine($file, $line) {
-    $f = fopen($file, "a");
-    fputcsv($f, $line, ";");
-    fclose($f);
-}
+                        $allowedFiles = ALLOWED_FILES;
+                        if (isset($allowedFiles[$mime_type])) {
+                            $newName = pathinfo($file['name'], PATHINFO_FILENAME) . '.' . $allowedFiles[$mime_type];
+                            $destination = UPLOAD_DIR . '/' . $newName;
 
-function getCSVData($file) {
-    $data = [];
-    if (($f = fopen($file, "r")) !== false) {
-        while (($line = fgetcsv($f, 0, ";")) !== false) {
-            if (count($line) > 0) $data[] = $line;
+                            if (move_uploaded_file($file['tmp_name'], $destination)) {
+                                $pdc_link = $newName; // Store the filename
+
+                                // Now add product to CSV with the image filename
+                                $connection = new mysqli("localhost", "root", "", "HTSTA_DB");
+                                $sqlQuery = $connection->prepare("INSERT INTO Products(productEN, productPT, price, imageLink, pageLink) values(?,?,?,?,?);");
+                                $sqlQuery->bind_param("sssss", $_POST["pdc_name"], $_POST["pdc_namePT"], $_POST["pdc_price"], $pdc_link, $_POST["pg_link"]);
+                                $sqlQuery->execute();
+                                print("<p style='color: green;'>Product " . htmlspecialchars($_POST["pdc_name"]) . " added successfully with image: " . htmlspecialchars($newName) . "</p>");
+                            } else {
+                                print("<p style='color: red;'>Error saving image file.</p>");
+                            }
+                        } else {
+                            print("<p style='color: red;'>Invalid file type. Only PNG and JPG are allowed.</p>");
+                        }
+                    } else {
+                        print("<p style='color: red;'>File too large. Maximum size is 5MB.</p>");
+                    }
+                } else {
+                    print("<p style='color: red;'>Upload error: " . $file['error'] . "</p>");
+                }
+            }
         }
-        fclose($f);
-    }
-    return $data;
-}
-
-if (isset($_POST["action"])) {
-    if ($_POST["action"] === "add_place") {
-        $country = $_POST["country"];
-        $placeName = trim($_POST["place_name"]);
-        $desc = trim($_POST["place_desc"]);
-        $image = "";
-        if (!empty($_FILES["place_image"]["name"])) {
-            $imgName = basename($_FILES["place_image"]["name"]);
-            $targetDir = "../images/";
-            $targetFile = $targetDir . $imgName;
-            move_uploaded_file($_FILES["place_image"]["tmp_name"], $targetFile);
-            $image = "images/" . $imgName;
-        }
-        saveCSVLine($placesFile, [$country, $placeName, $placeName, $desc, $image]);
-        echo "<p class='success'>Place added!</p>";
-    } elseif ($_POST["action"] === "add_translation") {
-        $translation = trim($_POST["translation"]);
-        $parts = explode(";", $translation);
-        if (count($parts) === 3) {
-            saveCSVLine($translationsFile, $parts);
-            echo "<p class='success'>Translation added!</p>";
-        } else {
-            echo "<p class='error'>Invalid translation format.</p>";
-        }
-    }
-}
-
-$places = getCSVData($placesFile);
-?>
-
-<div class="admin-section">
-    <h2>Current Places</h2>
-    <div class="table-wrapper">
-        <table>
-            <tr><th>Country</th><th>Place Name</th><th>Description</th><th>Image</th></tr>
-            <?php foreach($places as $p): ?>
-                <tr>
-                    <td><?= htmlspecialchars($p[0]) ?></td>
-                    <td><?= htmlspecialchars($p[1]) ?></td>
-                    <td><?= htmlspecialchars($p[3]) ?></td>
-                    <td>
-                        <?php if(!empty($p[4])): ?>
-                            <img src="<?= htmlspecialchars($p[4]) ?>" class="place-img" alt="<?= htmlspecialchars($p[1]) ?>">
-                        <?php endif; ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </div>
-</div>
-
-<div class="admin-section">
-    <h2>Add New Place</h2>
-    <div class="form-wrapper">
-        <form class="admin-form" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="action" value="add_place">
-            <label>Country</label>
-            <select name="country">
-                <option value="Country1">Country 1</option>
-                <option value="Country2">Country 2</option>
-            </select>
-            <label>Place Name</label>
-            <input type="text" name="place_name" required>
-            <label>Description</label>
-            <input type="text" name="place_desc" required>
-            <label>Image</label>
-            <input type="file" name="place_image">
-            <button class="btn-add" type="submit">Add Place</button>
+    ?>
+        <form method="POST" enctype="multipart/form-data">
+            <div>Product Name</div><br>
+            <input type="text" name="pdc_name" required><br><br>
+            <div>Product Price</div><br>
+            <input type="text" name="pdc_price" placeholder="e.g., $39.99" required><br><br>
+            <div>Product Name in Portuguese</div><br>
+            <input type="text" name="pdc_namePT" required><br><br>
+            <div>Page Link</div><br>
+            <input type="text" name="pg_link" required><br><br>
+            <div>Product Image</div><br>
+            <input type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg" required><br><br>
+            <input type="submit" value="Add Product" name="add_product">
         </form>
-    </div>
-</div>
 
-<div class="admin-section">
-    <h2>Add / Update Translation</h2>
-    <div class="form-wrapper">
-        <form class="admin-form" method="POST">
-            <input type="hidden" name="action" value="add_translation">
-            <label>Translation (format: Key;English;Portuguese)</label>
-            <input type="text" name="translation" required>
-            <button class="btn-add" type="submit">Add Translation</button>
-        </form>
-    </div>
-</div>
-
+    <?php
+    } else {
+        print("<h1>You do not have permission to access this page.</h1>");
+        die();
+    }
+    ?>
 </body>
+
 </html>

@@ -15,28 +15,34 @@
 
 	?>
 	<main>
-		
+
 		<h1><a href="https://en.wikipedia.org/wiki/Italy" target="blank_"><?= $arrayOfTranslations["Italy"] ?></a></h1>
 		<h2>space</h2>
-		<?php 
-		$sqlQuery=$connection->prepare("SELECT * FROM Products");
+		<?php
+		$sqlQuery = $connection->prepare("SELECT * FROM Products");
 		$sqlQuery->execute();
-		$result=$sqlQuery->get_result();
-		while($row=$result->fetch_assoc()){
+		$result = $sqlQuery->get_result();
+		while ($row = $result->fetch_assoc()) {
 		?>
-		<figure>
-                <div class="pageLink"><a href="<?= $row["pageLink"] ?>"><figcaption><?= $row[($language == "EN") ? "productEN" : "productPT"] ?></figcaption></a></div>
-                <a href="<?= $row["imageLink"] ?>"><img src="<?= $row["imageLink"] ?>" alt="<?= $row["productEN"] ?>" width="300"></a>
-                <figcaption><?= $row["price"] ?>€</figcaption>
-                <form method="POST">
-                    <input type="number" placeholder="quantity" name="quantityToBuy">
-                    <input type="hidden" value="<?= $row["productID"] ?>" name="itemToBuy"></input>
-                    <input type="submit" value="buy">
-                </form>
-            </figure>
-        <?php
-        }
-        ?>
+			<figure>
+				<div class="pageLink"><a href="<?= $row["pageLink"] ?>">
+						<figcaption><?= $row[($language == "EN") ? "productEN" : "productPT"] ?></figcaption>
+					</a></div>
+				<a href="<?= $row["imageLink"] ?>"><img src="<?= $row["imageLink"] ?>" alt="<?= $row["productEN"] ?>" width="300"></a>
+				<figcaption><?= $row["price"] ?>€</figcaption>
+				<form method="POST">
+					<?php if (isset($_SESSION["UserLogged"]) && $_SESSION["IsAdmin"] == false) {
+					?>  <input type="number" placeholder="quantity" name="quantityToBuy">
+						<input type="submit" value="buy">
+						<input type="hidden" value="<?= $row["productID"] ?>" name="itemToBuy"></input>
+					<?php
+					}
+					?>
+				</form>
+			</figure>
+		<?php
+		}
+		?>
 		<h2>space</h2>
 		<h2>space</h2>
 	</main>

@@ -1,4 +1,5 @@
-create or replace database HTSTA_DB;
+drop database HTSTA_DB;
+create database HTSTA_DB;
 use HTSTA_DB;
 
 create table Translations(
@@ -20,8 +21,7 @@ create table Clients(
     clientID    int auto_increment primary key,
     username    varchar(50) unique,
     pswd        varchar(255),
-    isadmin     boolean default false,
-    usertype    char(10)
+    isadmin     boolean default false
 );
 
 create table Messages(
@@ -39,8 +39,8 @@ insert into Products(productEN,productPT,price,imageLink,pageLink) values
 ("KhonKaen","Khon Kaen","919.99","../images/khon.jpg","khon.php"),
 ("KoPhiPhi","Ko Phi Phi","1239.99","../images/phiphi.jpg","phiphi.php");
 
-insert into Clients(username,pswd,isadmin,usertype) values
-("simi123","$2y$10$lKOE2sUwIkbv2heQpk3qNOxg5e7HK2Xty1w8SBRxyoskr0dVCvrne","true","admin");
+insert into Clients(username,pswd,isadmin) values
+("simi123","$2y$10$lKOE2sUwIkbv2heQpk3qNOxg5e7HK2Xty1w8SBRxyoskr0dVCvrne","1");
 
 insert into Translations(keyValue,english,portuguese) values
 ("HomeText","In this website, you can find information about two countries and some of their highly visited places. Get your tickets now!","Neste site, encontrará informação sobre dois países e alguns dos seus locais mais visitados. Compre já os seus bilhetes!"),
