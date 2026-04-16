@@ -14,15 +14,15 @@
     navBar("Admin");
 
     // Define constants at the top level
-    define('ALLOWED_FILES', [
+    const ALLOWED_FILES = [
         'image/png'  => 'png',
         'image/jpeg' => 'jpg',
         'image/jpg'  => 'jpg',
         'image/pjpeg' => 'jpg',
         'image/x-jpeg' => 'jpg'
-    ]);
-    define('MAX_SIZE', 5 * 1024 * 1024); // 5MB
-    define('UPLOAD_DIR', __DIR__ . '/images');
+    ];
+    const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+    const UPLOAD_DIR =  __DIR__ . '../../images';
     ?>
     <h2>Admin Panel</h2>
     <p>Welcome to the admin panel. Here you can manage the webshop.</p>
@@ -54,7 +54,7 @@
                             $destination = UPLOAD_DIR . '/' . $newName;
 
                             if (move_uploaded_file($file['tmp_name'], $destination)) {
-                                $pdc_link = $newName; // Store the filename
+                                $pdc_link = "../images/".$newName; // Store the filename
 
                                 // Now add product to CSV with the image filename
                                 $connection = new mysqli("localhost", "root", "", "HTSTA_DB");
@@ -84,8 +84,8 @@
             <input type="text" name="pdc_price" placeholder="e.g., $39.99" required><br><br>
             <div>Product Name in Portuguese</div><br>
             <input type="text" name="pdc_namePT" required><br><br>
-            <div>Page Link</div><br>
-            <input type="text" name="pg_link" required><br><br>
+            <div>Page Link (optional)</div><br>
+            <input type="text" name="pg_link"><br><br>
             <div>Product Image</div><br>
             <input type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg" required><br><br>
             <input type="submit" value="Add Product" name="add_product">

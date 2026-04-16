@@ -38,8 +38,8 @@ if (isset($_POST["Username"], $_POST["psw"], $_POST["pswAgain"])) {
         $showForm = true;
     } else {
         $hash = password_hash($psw, PASSWORD_DEFAULT);
-        $sqlQuery = $connection->prepare("INSERT INTO Clients(username, pswd, isadmin, usertype) values (?,?,'false',?)");
-        $sqlQuery->bind_param("sss",$user,$hash,$userType );
+        $sqlQuery = $connection->prepare("INSERT INTO Clients(username, pswd, isadmin) values (?,?,'0')");
+        $sqlQuery->bind_param("ss",$user,$hash);
         $sqlQuery->execute();
 
         // Append user to CSV without adding extra newlines

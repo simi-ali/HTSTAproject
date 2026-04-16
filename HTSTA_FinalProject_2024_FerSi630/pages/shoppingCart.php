@@ -17,20 +17,20 @@
     <h1>Shopping cart contents</h1>
     <table>
         <tr>
-            <th>Item</th>   
+            <th>Item</th>
             </th>Quantity</th>
         </tr>
-    <?php
-        foreach($_SESSION["Cart"] as $itemId => $itemQuantity) {
-    ?>
-        <tr>
-            <td><?= $itemId ?> </td>
-            <td><?= $itemQuantity ?> </td>
-        </tr>
-    <?php
+        <?php
+        foreach ($_SESSION["Cart"] as $itemId => $itemQuantity) {
+        ?>
+            <tr>
+                <td><?= $itemId ?> </td>
+                <td><?= $itemQuantity ?> </td>
+            </tr>
+        <?php
         }
-    
-    ?>
+
+        ?>
     </table>
 
 </body>
