@@ -44,7 +44,7 @@ insert into Clients(username,pswd,isadmin) values
 
 insert into Translations(keyValue,english,portuguese) values
 ("HomeText","In this website, you can find information about two countries and some of their highly visited places. Get your tickets now!","Neste site, encontrará informação sobre dois países e alguns dos seus locais mais visitados. Compre já os seus bilhetes!"),
-("HomeNav","Refer to the navigation bar to learn more","Consulte a barra de navegação para saber mais."),
+("HomeNav","Refer to the navigation bar to learn more.","Consulte a barra de navegação para saber mais."),
 ("Welcome","Welcome!","Bem-vindo!"),
 ("HomeBtn","Home","Início"),
 ("ProductBtn","Products","Produtos"),
@@ -109,8 +109,20 @@ insert into Translations(keyValue,english,portuguese) values
 ("LoggedInAs","Logged in as","Conectado como"),
 ("Recommendations","Some recommended places to visit include:","Alguns locais recomendados para visitar incluem:"),
 ("CartBtn","Cart","Carrinho"),
-("ForumBtn","Forum","Forum");
-
+("Quantity","Quantity","Quantidade"),
+("Item","Item","Item"),
+("Price","Price","Preço"),
+("TotalPrice","Total price","Preço total"),
+("RemoveBtn","Remove","Remover"),
+("ClearBtn","Clear","Limpar"),
+("CartTitle","Shopping cart contents","Conteúdo do carrinho"),
+("ForumBtn","Forum","Forum"),
+("WelcomeForum","Welcome to our forum messaging space!","Bem-vindo(a) ao nosso fórum de mensagens!"),
+("SendBtn","Send message","Enviar mensagem"),
+("UserWrote","wrote ","escreveu "),
+("ForumPlaceholder","Type a new message","Envia uma mensagem"),
+("SubTotal","Subtotal","Subtotal"),
+("Action","Action","Ações");
 
 
 

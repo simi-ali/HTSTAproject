@@ -19,6 +19,7 @@
 		<h1><a href="https://en.wikipedia.org/wiki/Italy" target="blank_"><?= $arrayOfTranslations["Italy"] ?></a></h1>
 		<h2>space</h2>
 		<?php
+		
 		$sqlQuery = $connection->prepare("SELECT * FROM Products");
 		$sqlQuery->execute();
 		$result = $sqlQuery->get_result();
@@ -31,7 +32,7 @@
 				<a href="<?= $row["imageLink"] ?>"><img src="<?= $row["imageLink"] ?>" alt="<?= $row["productEN"] ?>" width="300"></a>
 				<figcaption><?= $row["price"] ?>€</figcaption>
 				<form method="POST">
-					<?php if (isset($_SESSION["UserLogged"]) && $_SESSION["IsAdmin"] == false) {
+					<?php if ($_SESSION["UserLogged"] == true && $_SESSION["IsAdmin"] == false) {
 					?>  <input type="number" placeholder="quantity" name="quantityToBuy">
 						<input type="submit" value="buy">
 						<input type="hidden" value="<?= $row["productID"] ?>" name="itemToBuy"></input>

@@ -24,7 +24,7 @@
     <main>
         <h2>space</h2>
         <h1>
-            Welcome to our Forum messaging space.
+            <?= $arrayOfTranslations["WelcomeForum"] ?>
         </h1>
         <div id="AllPreviousMessages">
             <?php
@@ -34,7 +34,7 @@
             while ($row = $result->fetch_assoc()) {
             ?>
                 <div>
-                    <?= $row["username"] ?> wrote: <?= $row["messageText"] ?>
+                    <?= $row["username"] . $arrayOfTranslations["UserWrote"] . $row["messageText"] ?>
                 </div>
             <?php
             }
@@ -43,8 +43,8 @@
         </div>
         <div id="newMessage">
             <form method="POST">
-                <input name="newMessage" placeholder="Type a new message">
-                <input type="submit" value="Send message">
+                <input name="newMessage" placeholder="<?= $arrayOfTranslations["ForumPlaceholder"] ?>">
+                <input type="submit" value="<?= $arrayOfTranslations["SendBtn"] ?>">
             </form>
         </div>
         </footer>
