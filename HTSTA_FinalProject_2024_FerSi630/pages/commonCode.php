@@ -61,7 +61,8 @@ while ($row = $sqlResult->fetch_assoc()) {
         $arrayOfTranslations[$row["keyValue"]] = $row["portuguese"];
     }
 };
-
+$itmq=0;
+foreach($_SESSION["Cart"] as $itemId=>$itemquantity){$itmq+=$itemquantity;}
 $pages = [
     "Home"      => ["label" => $arrayOfTranslations["HomeBtn"], "url" => "index.php"],
     "Products"  => ["label" => $arrayOfTranslations["ProductBtn"], "url" => "country1.php"]
@@ -72,7 +73,7 @@ if($_SESSION["UserLogged"] == false){
     $pages["Login"] = ["label" => $arrayOfTranslations["LoginBtn"], "url" => "login.php"];
 }
 if($_SESSION["UserLogged"] == true){
-    $pages["Cart"] = ["label" => $arrayOfTranslations["CartBtn"], "url" => "shoppingCart.php"];
+    $pages["Cart"] = ["label" => $arrayOfTranslations["CartBtn"] . " (". $itmq. ")", "url" => "shoppingCart.php"];
     $pages["Forum"] = ["label" => $arrayOfTranslations["ForumBtn"], "url" => "forum.php"];
 }
 if($_SESSION["UserLogged"] == true && $_SESSION["IsAdmin"] == 1){

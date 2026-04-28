@@ -23,7 +23,7 @@ $userType = "regular";
 if (isset($_POST["Username"], $_POST["psw"], $_POST["pswAgain"])) {
     $showForm = false;
 
-    $user = trim($_POST["Username"]); // Trim username
+    $user = htmlspecialchars(trim($_POST["Username"])); // Trim username
     $psw = $_POST["psw"];            // Do NOT trim password
     $again = $_POST["pswAgain"];
 

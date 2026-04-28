@@ -9,15 +9,18 @@
 </head>
 
 <body>
-    <?php
-    include_once("commonCode.php");
-    navBar("Cart");
-    ?>
+    <nav>
+        <?php
+        include_once("commonCode.php");
+        navBar("Cart");
+        ?>
+    </nav>
     <main>
         <?php
 
         if (!isset($_SESSION["Cart"])) {
             $_SESSION["Cart"] = [];
+            $counter = 0;
         }
         if (isset($_POST["removeProduct"])) {
             $productRemove = $_POST["removeProduct"];
@@ -45,6 +48,8 @@
 
                 $total += $row["price"] * $itemQuantity;
 
+                global $itemQuantity, $counter;
+                $counter += $itemQuantity;
             ?>
                 <tr>
                     <td><?= $row[($language == "EN") ? "productEN" : "productPT"] ?></td>
@@ -65,9 +70,11 @@
 
         </table>
         <h3><?= ($language == "EN") ? "Total: " : "Total: " ?><?= $total ?> €</h3>
-        <a href="country1.php?lang=<?= $language ?>">
-            <?= ($language == "EN") ? "Continue Shopping" : "Continuar a Comprar" ?>
-        </a>
+        <p>
+            <a style="text-decoration: none; color: black"  href="country1.php?lang=<?= $language ?>">
+                <?= ($language == "EN") ? "Continue Shopping (click here!)" : "Continuar a Comprar (clique aqui!)" ?>
+            </a>
+        <p>
         <form method="POST">
             <button type="submit" name="checkoutbtn">
                 <?= ($language == "EN") ? "Checkout" : "Finalizar Compra" ?>

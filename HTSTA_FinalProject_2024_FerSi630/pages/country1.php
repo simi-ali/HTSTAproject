@@ -33,8 +33,8 @@
 				<figcaption><?= $row["price"] ?>€</figcaption>
 				<form method="POST">
 					<?php if ($_SESSION["UserLogged"] == true && $_SESSION["IsAdmin"] == false) {
-					?>  <input type="number" placeholder="quantity" name="quantityToBuy">
-						<input type="submit" value="buy">
+					?>  <input type="number" placeholder=" <?= ($language == "EN") ? "quantity" : "quantidade" ?>" name="quantityToBuy">
+						<input type="submit" value=" <?= ($language == "EN") ? "Buy" : "Comprar" ?>">
 						<input type="hidden" value="<?= $row["productID"] ?>" name="itemToBuy"></input>
 					<?php
 					}
