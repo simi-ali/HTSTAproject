@@ -14,6 +14,7 @@
     navBar("Forum");
 
     if (isset($_POST["newMessage"])) {
+        $connection = new mysqli("localhost", "root", "", "HTSTA_DB");
         $_POST["newMessage"] = htmlspecialchars($_POST["newMessage"]);
         $sqlInsert = $connection->prepare("INSERT into Messages(messageText,username) values(?,?)");
         $sqlInsert->bind_param("ss", $_POST["newMessage"], $_SESSION["Username"]);
@@ -34,7 +35,7 @@
             while ($row = $result->fetch_assoc()) {
             ?>
                 <div>
-                    <?= $row["username"] . $arrayOfTranslations["UserWrote"] . $row["messageText"] ?>
+                    <?= $row["username"] . " " . $arrayOfTranslations["UserWrote"] . " " . $row["messageText"] ?>
                 </div>
             <?php
             }

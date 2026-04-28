@@ -119,7 +119,7 @@ insert into Translations(keyValue,english,portuguese) values
 ("ForumBtn","Forum","Forum"),
 ("WelcomeForum","Welcome to our forum messaging space!","Bem-vindo(a) ao nosso fórum de mensagens!"),
 ("SendBtn","Send message","Enviar mensagem"),
-("UserWrote","wrote ","escreveu "),
+("UserWrote","wrote:","escreveu:"),
 ("ForumPlaceholder","Type a new message","Envia uma mensagem"),
 ("SubTotal","Subtotal","Subtotal"),
 ("Action","Action","Ações");
